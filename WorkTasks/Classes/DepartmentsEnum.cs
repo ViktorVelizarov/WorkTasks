@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace WorkTasks.Classes
 {
-    internal class DepartmentsEnum
+    public enum DepartmentsEnum
     {
+        HumanResources,
+        ResearchAndDevelopment,
+        Support,
+        Marketing,
+        Sales
     }
 }

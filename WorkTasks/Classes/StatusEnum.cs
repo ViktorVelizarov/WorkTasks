@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace WorkTasks.Classes
 {
-    internal class StatusEnum
+    public enum StatusEnum
     {
+        Open,
+        InProgress,
+        Completed,
+        Blocked,
+        Cancelled
     }
 }

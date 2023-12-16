@@ -1,10 +1,25 @@
+using WorkTasks.Forms;
+
 namespace WorkTasks
 {
-    public partial class Form1 : Form
+    public partial class HomePage : Form
     {
-        public Form1()
+        public HomePage()
         {
             InitializeComponent();
+        }
+
+        private void TasksPage_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            var temp = new TaskPage();
+            temp.Show();
+        }
+
+        private void EmployeesPage_btn_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

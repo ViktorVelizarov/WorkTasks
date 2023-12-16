@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkTasks.Classes
 {
+    [Serializable]
     public class Employee
     {
 

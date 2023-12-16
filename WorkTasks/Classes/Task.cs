@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace WorkTasks.Classes
 {
-    public class Task
+    [Serializable]
+    public class TaskClass
     {
         //fields
         private string title;
@@ -16,10 +17,18 @@ namespace WorkTasks.Classes
         private Employee employee;
 
         //constructor
-        public Task(string title, string description) 
+        public TaskClass(string title, StatusEnum status,  string description) 
         {
             this.title = title;
+            this.departments = new List<DepartmentsEnum>();
+            this.status = status;
             this.description = description;
         }  
+
+        //methods
+        public void AddDepartmentToList(DepartmentsEnum department)
+        {
+            this.departments.Add(department);
+        }
     }
 }

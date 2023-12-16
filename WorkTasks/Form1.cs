@@ -12,7 +12,6 @@ namespace WorkTasks
         private void TasksPage_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-
             var temp = new TaskPage();
             temp.Show();
         }

@@ -30,6 +30,7 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            TasksFlowLayout = new FlowLayoutPanel();
             DeleteTask_btn = new Button();
             UpdateTask_btn = new Button();
             LoadAllTasks_btn = new Button();
@@ -39,7 +40,6 @@
             label6 = new Label();
             textBox1 = new TextBox();
             label5 = new Label();
-            TasksListbox = new ListBox();
             tabPage2 = new TabPage();
             CreateTask_btn = new Button();
             descTextbox = new RichTextBox();
@@ -79,6 +79,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(TasksFlowLayout);
             tabPage1.Controls.Add(DeleteTask_btn);
             tabPage1.Controls.Add(UpdateTask_btn);
             tabPage1.Controls.Add(LoadAllTasks_btn);
@@ -88,7 +89,6 @@
             tabPage1.Controls.Add(label6);
             tabPage1.Controls.Add(textBox1);
             tabPage1.Controls.Add(label5);
-            tabPage1.Controls.Add(TasksListbox);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -97,9 +97,18 @@
             tabPage1.Text = "Search Tasks";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // TasksFlowLayout
+            // 
+            TasksFlowLayout.AutoScroll = true;
+            TasksFlowLayout.BackColor = Color.Transparent;
+            TasksFlowLayout.Location = new Point(28, 95);
+            TasksFlowLayout.Name = "TasksFlowLayout";
+            TasksFlowLayout.Size = new Size(908, 456);
+            TasksFlowLayout.TabIndex = 10;
+            // 
             // DeleteTask_btn
             // 
-            DeleteTask_btn.Location = new Point(733, 254);
+            DeleteTask_btn.Location = new Point(942, 254);
             DeleteTask_btn.Name = "DeleteTask_btn";
             DeleteTask_btn.Size = new Size(192, 49);
             DeleteTask_btn.TabIndex = 9;
@@ -108,7 +117,7 @@
             // 
             // UpdateTask_btn
             // 
-            UpdateTask_btn.Location = new Point(733, 173);
+            UpdateTask_btn.Location = new Point(942, 174);
             UpdateTask_btn.Name = "UpdateTask_btn";
             UpdateTask_btn.Size = new Size(192, 49);
             UpdateTask_btn.TabIndex = 8;
@@ -117,7 +126,7 @@
             // 
             // LoadAllTasks_btn
             // 
-            LoadAllTasks_btn.Location = new Point(733, 95);
+            LoadAllTasks_btn.Location = new Point(942, 95);
             LoadAllTasks_btn.Name = "LoadAllTasks_btn";
             LoadAllTasks_btn.Size = new Size(192, 49);
             LoadAllTasks_btn.TabIndex = 7;
@@ -177,15 +186,6 @@
             label5.Size = new Size(142, 25);
             label5.TabIndex = 1;
             label5.Text = "Search by name:";
-            // 
-            // TasksListbox
-            // 
-            TasksListbox.FormattingEnabled = true;
-            TasksListbox.ItemHeight = 20;
-            TasksListbox.Location = new Point(28, 95);
-            TasksListbox.Name = "TasksListbox";
-            TasksListbox.Size = new Size(658, 464);
-            TasksListbox.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -403,7 +403,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1172, 636);
+            ClientSize = new Size(1667, 762);
             Controls.Add(tabControl1);
             Name = "TaskPage";
             Text = "Task Page";
@@ -449,5 +449,6 @@
         private ComboBox comboBox2;
         private Label label7;
         private ComboBox comboBox1;
+        private FlowLayoutPanel TasksFlowLayout;
     }
 }

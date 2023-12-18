@@ -18,7 +18,9 @@ namespace WorkTasks
 
         private void EmployeesPage_btn_Click(object sender, EventArgs e)
         {
-           
+            this.Hide();
+            var temp = new EmployeePage();
+            temp.Show();
         }
     }
 }

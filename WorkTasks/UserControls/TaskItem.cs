@@ -25,7 +25,7 @@ namespace WorkTasks.UserControls
         private string byUser;
         private string description;
 
-      
+
         //getters and setters
         public string Name
         {

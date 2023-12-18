@@ -30,9 +30,8 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            button1 = new Button();
             TasksFlowLayout = new FlowLayoutPanel();
-            DeleteTask_btn = new Button();
-            UpdateTask_btn = new Button();
             LoadAllTasks_btn = new Button();
             comboBox2 = new ComboBox();
             label7 = new Label();
@@ -41,6 +40,8 @@
             textBox1 = new TextBox();
             label5 = new Label();
             tabPage2 = new TabPage();
+            label8 = new Label();
+            deadlineCalendar = new MonthCalendar();
             CreateTask_btn = new Button();
             descTextbox = new RichTextBox();
             nameTextbox = new TextBox();
@@ -60,6 +61,7 @@
             label1 = new Label();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
+            GoBack_btn = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -79,9 +81,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button1);
             tabPage1.Controls.Add(TasksFlowLayout);
-            tabPage1.Controls.Add(DeleteTask_btn);
-            tabPage1.Controls.Add(UpdateTask_btn);
             tabPage1.Controls.Add(LoadAllTasks_btn);
             tabPage1.Controls.Add(comboBox2);
             tabPage1.Controls.Add(label7);
@@ -97,32 +98,23 @@
             tabPage1.Text = "Search Tasks";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            button1.Location = new Point(942, 166);
+            button1.Name = "button1";
+            button1.Size = new Size(192, 49);
+            button1.TabIndex = 11;
+            button1.Text = "Create Task";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // TasksFlowLayout
             // 
             TasksFlowLayout.AutoScroll = true;
-            TasksFlowLayout.BackColor = Color.Transparent;
+            TasksFlowLayout.BackColor = Color.LightGray;
             TasksFlowLayout.Location = new Point(28, 95);
             TasksFlowLayout.Name = "TasksFlowLayout";
-            TasksFlowLayout.Size = new Size(908, 456);
+            TasksFlowLayout.Size = new Size(893, 456);
             TasksFlowLayout.TabIndex = 10;
-            // 
-            // DeleteTask_btn
-            // 
-            DeleteTask_btn.Location = new Point(942, 254);
-            DeleteTask_btn.Name = "DeleteTask_btn";
-            DeleteTask_btn.Size = new Size(192, 49);
-            DeleteTask_btn.TabIndex = 9;
-            DeleteTask_btn.Text = "Delete Task";
-            DeleteTask_btn.UseVisualStyleBackColor = true;
-            // 
-            // UpdateTask_btn
-            // 
-            UpdateTask_btn.Location = new Point(942, 174);
-            UpdateTask_btn.Name = "UpdateTask_btn";
-            UpdateTask_btn.Size = new Size(192, 49);
-            UpdateTask_btn.TabIndex = 8;
-            UpdateTask_btn.Text = "Update Task";
-            UpdateTask_btn.UseVisualStyleBackColor = true;
             // 
             // LoadAllTasks_btn
             // 
@@ -137,7 +129,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(884, 29);
+            comboBox2.Location = new Point(647, 29);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(151, 28);
             comboBox2.TabIndex = 6;
@@ -146,16 +138,16 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(687, 32);
+            label7.Location = new Point(530, 30);
             label7.Name = "label7";
-            label7.Size = new Size(191, 25);
+            label7.Size = new Size(111, 25);
             label7.TabIndex = 5;
-            label7.Text = "Search by department:";
+            label7.Text = "Department:";
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(496, 29);
+            comboBox1.Location = new Point(328, 31);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 4;
@@ -164,15 +156,15 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(345, 32);
+            label6.Location = new Point(258, 32);
             label6.Name = "label6";
-            label6.Size = new Size(145, 25);
+            label6.Size = new Size(64, 25);
             label6.TabIndex = 3;
-            label6.Text = "Search by status:";
+            label6.Text = "Status:";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(187, 30);
+            textBox1.Location = new Point(97, 30);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 2;
@@ -183,12 +175,14 @@
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             label5.Location = new Point(28, 30);
             label5.Name = "label5";
-            label5.Size = new Size(142, 25);
+            label5.Size = new Size(63, 25);
             label5.TabIndex = 1;
-            label5.Text = "Search by name:";
+            label5.Text = "Name:";
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label8);
+            tabPage2.Controls.Add(deadlineCalendar);
             tabPage2.Controls.Add(CreateTask_btn);
             tabPage2.Controls.Add(descTextbox);
             tabPage2.Controls.Add(nameTextbox);
@@ -214,9 +208,25 @@
             tabPage2.Text = "Create Task";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(21, 372);
+            label8.Name = "label8";
+            label8.Size = new Size(110, 31);
+            label8.TabIndex = 18;
+            label8.Text = "Deadline:";
+            // 
+            // deadlineCalendar
+            // 
+            deadlineCalendar.Location = new Point(209, 372);
+            deadlineCalendar.Name = "deadlineCalendar";
+            deadlineCalendar.TabIndex = 17;
+            // 
             // CreateTask_btn
             // 
-            CreateTask_btn.Location = new Point(394, 444);
+            CreateTask_btn.Location = new Point(943, 483);
             CreateTask_btn.Name = "CreateTask_btn";
             CreateTask_btn.Size = new Size(165, 42);
             CreateTask_btn.TabIndex = 16;
@@ -399,11 +409,22 @@
             tabPage4.Text = "Delete Task";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // GoBack_btn
+            // 
+            GoBack_btn.Location = new Point(16, 692);
+            GoBack_btn.Name = "GoBack_btn";
+            GoBack_btn.Size = new Size(192, 49);
+            GoBack_btn.TabIndex = 12;
+            GoBack_btn.Text = "Back";
+            GoBack_btn.UseVisualStyleBackColor = true;
+            GoBack_btn.Click += GoBack_btn_Click;
+            // 
             // TaskPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1667, 762);
+            ClientSize = new Size(1170, 762);
+            Controls.Add(GoBack_btn);
             Controls.Add(tabControl1);
             Name = "TaskPage";
             Text = "Task Page";
@@ -443,12 +464,14 @@
         private TextBox textBox1;
         private Label label5;
         private ListBox TasksListbox;
-        private Button DeleteTask_btn;
-        private Button UpdateTask_btn;
         private Button LoadAllTasks_btn;
         private ComboBox comboBox2;
         private Label label7;
         private ComboBox comboBox1;
         private FlowLayoutPanel TasksFlowLayout;
+        private Button button1;
+        private Label label8;
+        private MonthCalendar deadlineCalendar;
+        private Button GoBack_btn;
     }
 }

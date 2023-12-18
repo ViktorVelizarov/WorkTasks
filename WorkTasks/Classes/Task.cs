@@ -40,25 +40,20 @@ namespace WorkTasks.Classes
         }
 
         //constructor
-        public TaskClass(string title, StatusEnum status,  string description) 
+        public TaskClass(string title, StatusEnum status,  string description, string deadline) 
         {
             this.title = title;
             this.departments = new List<DepartmentsEnum>();
             this.status = status;
             this.description = description;
-            this.deadline = "bruh";
+            this.deadline = deadline;
+            this.employee = new Employee();
         }  
 
         //methods
         public void AddDepartmentToList(DepartmentsEnum department)
         {
             this.departments.Add(department);
-        }
-
-        public string GetInfo()
-        {
-            return "Name: " + title + " | Departments: " + departments + " | Status: " + 
-            status + " | desctiption: " + description;
         }
     }
 }

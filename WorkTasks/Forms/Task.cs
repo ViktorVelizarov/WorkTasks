@@ -22,6 +22,7 @@ namespace WorkTasks.Forms
 
         public void PopulateUserControls()
         {
+            TasksFlowLayout.Controls.Clear();
             foreach (TaskClass task in myCompany.Tasks())
             {
                 TaskItem taskItem = new TaskItem();
@@ -32,14 +33,8 @@ namespace WorkTasks.Forms
                 taskItem.ByUser = "user1";
                 taskItem.Departments = task.Departments;
                 //add to flowLayout
-                if (TasksFlowLayout.Controls.Count < 0)
-                {
-                    TasksFlowLayout.Controls.Clear();
-                }
-                else
-                {
-                    TasksFlowLayout.Controls.Add(taskItem);
-                }
+
+                TasksFlowLayout.Controls.Add(taskItem);
             }
         }
         private void CreateTask_btn_Click(object sender, EventArgs e)
@@ -48,6 +43,9 @@ namespace WorkTasks.Forms
             {
                 string taskName = nameTextbox.Text;
                 string taskDescription = descTextbox.Text;
+                DateTime datetime = deadlineCalendar.SelectionRange.Start;
+                string taskDeadlineString = datetime.ToString("yyyy-MM-dd");
+                string taskDeadline = taskDeadlineString;
                 StatusEnum taskStatus = StatusEnum.Open;
                 if (statusRadio1.Checked)
                 {
@@ -70,7 +68,7 @@ namespace WorkTasks.Forms
                     taskStatus = StatusEnum.Cancelled;
                 }
 
-                TaskClass createdTask = new TaskClass(taskName, taskStatus, taskDescription);
+                TaskClass createdTask = new TaskClass(taskName, taskStatus, taskDescription, taskDeadline);
 
                 if (departCheck1.Checked)
                 {
@@ -106,6 +104,13 @@ namespace WorkTasks.Forms
         private void LoadAllTasks_btn_Click(object sender, EventArgs e)
         {
             PopulateUserControls();
+        }
+
+        private void GoBack_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var temp = new HomePage();
+            temp.Show();
         }
     }
 }

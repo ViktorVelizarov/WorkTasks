@@ -34,6 +34,8 @@
             deadlineLabel = new Label();
             byUserLabel = new Label();
             dLabel = new Label();
+            UpdateTask_btn = new Button();
+            DeleteTask_btn = new Button();
             SuspendLayout();
             // 
             // nameLabel
@@ -96,11 +98,31 @@
             dLabel.TabIndex = 5;
             dLabel.Text = "Description";
             // 
+            // UpdateTask_btn
+            // 
+            UpdateTask_btn.Location = new Point(729, 30);
+            UpdateTask_btn.Name = "UpdateTask_btn";
+            UpdateTask_btn.Size = new Size(125, 45);
+            UpdateTask_btn.TabIndex = 6;
+            UpdateTask_btn.Text = "Update";
+            UpdateTask_btn.UseVisualStyleBackColor = true;
+            // 
+            // DeleteTask_btn
+            // 
+            DeleteTask_btn.Location = new Point(729, 94);
+            DeleteTask_btn.Name = "DeleteTask_btn";
+            DeleteTask_btn.Size = new Size(125, 45);
+            DeleteTask_btn.TabIndex = 7;
+            DeleteTask_btn.Text = "Delete";
+            DeleteTask_btn.UseVisualStyleBackColor = true;
+            // 
             // TaskItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = Color.White;
+            Controls.Add(DeleteTask_btn);
+            Controls.Add(UpdateTask_btn);
             Controls.Add(dLabel);
             Controls.Add(byUserLabel);
             Controls.Add(deadlineLabel);
@@ -108,7 +130,7 @@
             Controls.Add(statusLabel);
             Controls.Add(nameLabel);
             Name = "TaskItem";
-            Size = new Size(667, 169);
+            Size = new Size(887, 169);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -121,5 +143,7 @@
         private Label deadlineLabel;
         private Label byUserLabel;
         private Label dLabel;
+        private Button UpdateTask_btn;
+        private Button DeleteTask_btn;
     }
 }

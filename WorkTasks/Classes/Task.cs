@@ -38,6 +38,10 @@ namespace WorkTasks.Classes
         {
             get { return deadline; }
         }
+        public string EmployeeName
+        {
+            get { return employee.FirstName + employee.LastName; }
+        }
 
         //constructor
         public TaskClass(string title, StatusEnum status,  string description, string deadline) 

@@ -23,18 +23,34 @@ namespace WorkTasks.Forms
         public void PopulateUserControls()
         {
             TasksFlowLayout.Controls.Clear();
-            foreach (TaskClass task in myCompany.Tasks())
-            {
-                TaskItem taskItem = new TaskItem();
-                taskItem.Name = task.Title;
-                taskItem.Description = task.Description;
-                taskItem.Status = task.Status;
-                taskItem.Deadline = task.Deadline;
-                taskItem.ByUser = "user1";
-                taskItem.Departments = task.Departments;
-                //add to flowLayout
+            string csvFilePath = "tasks.csv";
 
-                TasksFlowLayout.Controls.Add(taskItem);
+            try
+            {
+                // Read all lines from the CSV file
+                string[] lines = File.ReadAllLines(csvFilePath);
+
+                foreach (string line in lines)
+                {
+                    // Split the CSV line into individual values
+                    string[] values = line.Split(',');
+
+                    // Create a TaskItem and populate it with data from the CSV
+                    TaskItem taskItem = new TaskItem();
+                    taskItem.Name = values[0]; 
+                    taskItem.Status =  values[1];  
+                    taskItem.Description = values[2];  
+                    taskItem.Deadline = values[3]; 
+                    taskItem.ByUser = values[4]; 
+                    taskItem.Departments = values[5]; 
+
+                    // Add the TaskItem to the flow layout
+                    TasksFlowLayout.Controls.Add(taskItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading from CSV: " + ex.Message);
             }
         }
         private void CreateTask_btn_Click(object sender, EventArgs e)
@@ -93,12 +109,31 @@ namespace WorkTasks.Forms
 
                 myCompany.AddTask(createdTask);
                 MessageBox.Show("Task created succesfully!");
+                SaveTaskToCSV(createdTask);
             }
             catch
             {
                 MessageBox.Show("Error :/");
             }
 
+        }
+
+        private void SaveTaskToCSV(TaskClass task)
+        {
+            string csvFilePath = "tasks.csv"; // Specify the path for your CSV file
+
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(csvFilePath, true))
+                {
+                    // Write task details to the CSV file
+                    sw.WriteLine($"{task.Title},{task.Status},{task.Description},{task.Deadline}, {task.EmployeeName} ,{string.Join(",", task.Departments)}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving to CSV: " + ex.Message);
+            }
         }
 
         private void LoadAllTasks_btn_Click(object sender, EventArgs e)

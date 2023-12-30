@@ -32,7 +32,7 @@ namespace WorkTasks.UserControls
         private void DeleteTask_btn_Click(object sender, EventArgs e)
         {
             DeleteTaskFromCSV(name);
-            taskPage.PopulateUserControls();
+            taskPage.PopulateUserControls("", "", "");
         }
 
         private void DeleteTaskFromCSV(string titleToDelete)
@@ -64,6 +64,12 @@ namespace WorkTasks.UserControls
             {
                 MessageBox.Show("Error deleting from CSV: " + ex.Message);
             }
+        }
+
+        private void UpdateTask_btn_Click(object sender, EventArgs e)
+        {
+            var temp = new TaskUpdate(this);
+            temp.Show();
         }
 
         //getters and setters

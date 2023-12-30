@@ -24,7 +24,7 @@ namespace WorkTasks.Classes
         }
         public string Departments
         {
-            get { return string.Join(" ", departments.Select(d => d.ToString())); }
+            get { return string.Join(" | ", departments.Select(d => d.ToString())); }
         }
         public string Status
         {

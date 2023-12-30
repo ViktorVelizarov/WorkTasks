@@ -106,6 +106,7 @@
             UpdateTask_btn.TabIndex = 6;
             UpdateTask_btn.Text = "Update";
             UpdateTask_btn.UseVisualStyleBackColor = true;
+            UpdateTask_btn.Click += UpdateTask_btn_Click;
             // 
             // DeleteTask_btn
             // 

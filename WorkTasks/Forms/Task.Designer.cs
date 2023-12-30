@@ -30,14 +30,15 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            label9 = new Label();
             button1 = new Button();
             TasksFlowLayout = new FlowLayoutPanel();
             LoadAllTasks_btn = new Button();
-            comboBox2 = new ComboBox();
+            DepartmentCombo = new ComboBox();
             label7 = new Label();
-            comboBox1 = new ComboBox();
+            StatusCombo = new ComboBox();
             label6 = new Label();
-            textBox1 = new TextBox();
+            NameBox = new TextBox();
             label5 = new Label();
             tabPage2 = new TabPage();
             label8 = new Label();
@@ -81,14 +82,15 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(label9);
             tabPage1.Controls.Add(button1);
             tabPage1.Controls.Add(TasksFlowLayout);
             tabPage1.Controls.Add(LoadAllTasks_btn);
-            tabPage1.Controls.Add(comboBox2);
+            tabPage1.Controls.Add(DepartmentCombo);
             tabPage1.Controls.Add(label7);
-            tabPage1.Controls.Add(comboBox1);
+            tabPage1.Controls.Add(StatusCombo);
             tabPage1.Controls.Add(label6);
-            tabPage1.Controls.Add(textBox1);
+            tabPage1.Controls.Add(NameBox);
             tabPage1.Controls.Add(label5);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
@@ -97,6 +99,15 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Search Tasks";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(941, 29);
+            label9.Name = "label9";
+            label9.Size = new Size(50, 20);
+            label9.TabIndex = 12;
+            label9.Text = "label9";
             // 
             // button1
             // 
@@ -126,13 +137,15 @@
             LoadAllTasks_btn.UseVisualStyleBackColor = true;
             LoadAllTasks_btn.Click += LoadAllTasks_btn_Click;
             // 
-            // comboBox2
+            // DepartmentCombo
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(647, 29);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(151, 28);
-            comboBox2.TabIndex = 6;
+            DepartmentCombo.FormattingEnabled = true;
+            DepartmentCombo.Items.AddRange(new object[] { "Human Resources ", "Marketing", "Sales", "Support", "Research and Development" });
+            DepartmentCombo.Location = new Point(647, 29);
+            DepartmentCombo.Name = "DepartmentCombo";
+            DepartmentCombo.Size = new Size(151, 28);
+            DepartmentCombo.TabIndex = 6;
+            DepartmentCombo.SelectedIndexChanged += DepartmentCombo_SelectedIndexChanged;
             // 
             // label7
             // 
@@ -144,13 +157,15 @@
             label7.TabIndex = 5;
             label7.Text = "Department:";
             // 
-            // comboBox1
+            // StatusCombo
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(328, 31);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 4;
+            StatusCombo.FormattingEnabled = true;
+            StatusCombo.Items.AddRange(new object[] { "Open", "InProgress", "Completed", "Blocked", "Cancelled" });
+            StatusCombo.Location = new Point(328, 31);
+            StatusCombo.Name = "StatusCombo";
+            StatusCombo.Size = new Size(151, 28);
+            StatusCombo.TabIndex = 4;
+            StatusCombo.SelectedIndexChanged += StatusCombo_SelectedIndexChanged;
             // 
             // label6
             // 
@@ -162,12 +177,13 @@
             label6.TabIndex = 3;
             label6.Text = "Status:";
             // 
-            // textBox1
+            // NameBox
             // 
-            textBox1.Location = new Point(97, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 2;
+            NameBox.Location = new Point(97, 30);
+            NameBox.Name = "NameBox";
+            NameBox.Size = new Size(125, 27);
+            NameBox.TabIndex = 2;
+            NameBox.TextChanged += NameBox_TextChanged;
             // 
             // label5
             // 
@@ -461,17 +477,18 @@
         private RichTextBox descTextbox;
         private TextBox nameTextbox;
         private Label label6;
-        private TextBox textBox1;
+        private TextBox NameBox;
         private Label label5;
         private ListBox TasksListbox;
         private Button LoadAllTasks_btn;
-        private ComboBox comboBox2;
+        private ComboBox DepartmentCombo;
         private Label label7;
-        private ComboBox comboBox1;
+        private ComboBox StatusCombo;
         private FlowLayoutPanel TasksFlowLayout;
         private Button button1;
         private Label label8;
         private MonthCalendar deadlineCalendar;
         private Button GoBack_btn;
+        private Label label9;
     }
 }

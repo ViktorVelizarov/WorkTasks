@@ -22,7 +22,7 @@ namespace WorkTasks.Forms
         public void PopulateUserControls()
         {
             EmployeesFlowLayout.Controls.Clear();
-            string filePath = "D:\\work-tasks\\WorkTasks\\WorkTasks\\MOCK_EMPLOYEE_DATA.csv"; 
+            string filePath = "MOCK_EMPLOYEE_DATA.csv"; 
 
             List<string> targetDepartments = new List<string> { "Human Resources", "Marketing", "Sales", "Support", "Research and Development" };
             List<Employee> employees = new List<Employee>();

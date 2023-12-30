@@ -20,7 +20,7 @@ namespace WorkTasks.Forms
             InitializeComponent();
         }
 
-        public void PopulateUserControls()
+        public void PopulateUserControls(string nameFilter, string statusFilter, string DepartmentFilter)
         {
             TasksFlowLayout.Controls.Clear();
             string csvFilePath = "tasks.csv";
@@ -34,18 +34,38 @@ namespace WorkTasks.Forms
                 {
                     // Split the CSV line into individual values
                     string[] values = line.Split(',');
+                    if (!string.IsNullOrEmpty(statusFilter))
+                    {
+                        if (values[1].Trim().Equals(statusFilter, StringComparison.OrdinalIgnoreCase))
+                        {
+                            // Create a TaskItem and populate it with data from the CSV
+                            TaskItem taskItem = new TaskItem(this);
+                            taskItem.Name = values[0];
+                            taskItem.Status = values[1];
+                            taskItem.Description = values[2];
+                            taskItem.Deadline = values[3];
+                            taskItem.ByUser = values[4];
+                            taskItem.Departments = values[5];
 
-                    // Create a TaskItem and populate it with data from the CSV
-                    TaskItem taskItem = new TaskItem(this);
-                    taskItem.Name = values[0]; 
-                    taskItem.Status =  values[1];  
-                    taskItem.Description = values[2];  
-                    taskItem.Deadline = values[3]; 
-                    taskItem.ByUser = values[4]; 
-                    taskItem.Departments = values[5]; 
+                            // Add the TaskItem to the flow layout
+                            TasksFlowLayout.Controls.Add(taskItem);
+                        }
+                    }
+                    else
+                    {
+                        // Create a TaskItem and populate it with data from the CSV
+                        TaskItem taskItem = new TaskItem(this);
+                        taskItem.Name = values[0];
+                        taskItem.Status = values[1];
+                        taskItem.Description = values[2];
+                        taskItem.Deadline = values[3];
+                        taskItem.ByUser = values[4];
+                        taskItem.Departments = values[5];
 
-                    // Add the TaskItem to the flow layout
-                    TasksFlowLayout.Controls.Add(taskItem);
+                        // Add the TaskItem to the flow layout
+                        TasksFlowLayout.Controls.Add(taskItem);
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -138,7 +158,7 @@ namespace WorkTasks.Forms
 
         private void LoadAllTasks_btn_Click(object sender, EventArgs e)
         {
-            PopulateUserControls();
+            PopulateUserControls("", "", "");
         }
 
         private void GoBack_btn_Click(object sender, EventArgs e)
@@ -146,6 +166,22 @@ namespace WorkTasks.Forms
             this.Hide();
             var temp = new HomePage();
             temp.Show();
+        }
+
+        private void NameBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StatusCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedStatus = StatusCombo.Text;
+            PopulateUserControls("", selectedStatus, "");
+        }
+
+        private void DepartmentCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

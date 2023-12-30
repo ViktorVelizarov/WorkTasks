@@ -115,6 +115,7 @@
             DeleteTask_btn.TabIndex = 7;
             DeleteTask_btn.Text = "Delete";
             DeleteTask_btn.UseVisualStyleBackColor = true;
+            DeleteTask_btn.Click += DeleteTask_btn_Click;
             // 
             // TaskItem
             // 

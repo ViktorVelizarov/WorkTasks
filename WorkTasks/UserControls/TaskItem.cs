@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WorkTasks.Forms;
 
 namespace WorkTasks.UserControls
 {
     public partial class TaskItem : UserControl
     {
-        public TaskItem()
+        private TaskPage taskPage;
+
+        public TaskItem(TaskPage taskPage)
         {
             InitializeComponent();
+            this.taskPage = taskPage;
         }
 
         //fields
@@ -25,6 +29,42 @@ namespace WorkTasks.UserControls
         private string byUser;
         private string description;
 
+        private void DeleteTask_btn_Click(object sender, EventArgs e)
+        {
+            DeleteTaskFromCSV(name);
+            taskPage.PopulateUserControls();
+        }
+
+        private void DeleteTaskFromCSV(string titleToDelete)
+        {
+            string csvFilePath = "tasks.csv";
+
+            try
+            {
+                // Read all lines from the CSV file
+                List<string> lines = File.ReadAllLines(csvFilePath).ToList();
+
+                // Find the line that contains the task to delete based on its title
+                string lineToDelete = lines.FirstOrDefault(line => line.StartsWith(titleToDelete));
+
+                if (lineToDelete != null)
+                {
+                    // Remove the line containing the task to delete
+                    lines.Remove(lineToDelete);
+
+                    // Write the updated lines back to the CSV file
+                    File.WriteAllLines(csvFilePath, lines);
+                }
+                else
+                {
+                    MessageBox.Show("Task not found in CSV file.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting from CSV: " + ex.Message);
+            }
+        }
 
         //getters and setters
         public string Name

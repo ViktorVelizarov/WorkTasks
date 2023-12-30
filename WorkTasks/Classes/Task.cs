@@ -40,7 +40,15 @@ namespace WorkTasks.Classes
         }
         public string EmployeeName
         {
-            get { return employee.FirstName + employee.LastName; }
+            get { if(employee == null)
+                    {
+                        return "No Employee";
+                    }
+                    else
+                    {
+                        return employee.FirstName + employee.LastName;
+                    }
+                }
         }
 
         //constructor
@@ -59,5 +67,7 @@ namespace WorkTasks.Classes
         {
             this.departments.Add(department);
         }
+
+
     }
 }

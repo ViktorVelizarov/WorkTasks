@@ -36,7 +36,7 @@ namespace WorkTasks.Forms
                     string[] values = line.Split(',');
 
                     // Create a TaskItem and populate it with data from the CSV
-                    TaskItem taskItem = new TaskItem();
+                    TaskItem taskItem = new TaskItem(this);
                     taskItem.Name = values[0]; 
                     taskItem.Status =  values[1];  
                     taskItem.Description = values[2];  

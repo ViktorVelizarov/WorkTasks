@@ -14,13 +14,16 @@ namespace WorkTasks.Forms
 {
     public partial class TaskPage : Form
     {
+        private string nameFilter;
+        private string statusFilter;
+        private string departmentFilter;
         Company myCompany = new Company("company1");
         public TaskPage()
         {
             InitializeComponent();
         }
 
-        public void PopulateUserControls(string nameFilter, string statusFilter, string DepartmentFilter)
+        public void PopulateUserControls()
         {
             TasksFlowLayout.Controls.Clear();
             string csvFilePath = "tasks.csv";
@@ -34,24 +37,16 @@ namespace WorkTasks.Forms
                 {
                     // Split the CSV line into individual values
                     string[] values = line.Split(',');
-                    if (!string.IsNullOrEmpty(statusFilter))
-                    {
-                        if (values[1].Trim().Equals(statusFilter, StringComparison.OrdinalIgnoreCase))
-                        {
-                            // Create a TaskItem and populate it with data from the CSV
-                            TaskItem taskItem = new TaskItem(this);
-                            taskItem.Name = values[0];
-                            taskItem.Status = values[1];
-                            taskItem.Description = values[2];
-                            taskItem.Deadline = values[3];
-                            taskItem.ByUser = values[4];
-                            taskItem.Departments = values[5];
 
-                            // Add the TaskItem to the flow layout
-                            TasksFlowLayout.Controls.Add(taskItem);
-                        }
-                    }
-                    else
+                    // Apply filters
+                    bool nameMatches = string.IsNullOrEmpty(nameFilter) || values[0].IndexOf(nameFilter, StringComparison.OrdinalIgnoreCase) >= 0;
+                    bool statusMatches = string.IsNullOrEmpty(statusFilter) || values[1].Trim().Equals(statusFilter, StringComparison.OrdinalIgnoreCase);
+                    // Check if department filter matches any department in the pipe-separated string
+                    bool departmentMatches = string.IsNullOrEmpty(departmentFilter) ||
+                        values[5].Split('|').Any(department => department.Trim().Equals(departmentFilter, StringComparison.OrdinalIgnoreCase));
+
+                    // Check if all filters match
+                    if (nameMatches && statusMatches && departmentMatches)
                     {
                         // Create a TaskItem and populate it with data from the CSV
                         TaskItem taskItem = new TaskItem(this);
@@ -65,13 +60,13 @@ namespace WorkTasks.Forms
                         // Add the TaskItem to the flow layout
                         TasksFlowLayout.Controls.Add(taskItem);
                     }
-
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error reading from CSV: " + ex.Message);
             }
+
         }
         private void CreateTask_btn_Click(object sender, EventArgs e)
         {
@@ -158,7 +153,13 @@ namespace WorkTasks.Forms
 
         private void LoadAllTasks_btn_Click(object sender, EventArgs e)
         {
-            PopulateUserControls("", "", "");
+            nameFilter = "";
+            statusFilter = "";
+            departmentFilter = "";
+            NameBox.Text = "";
+            StatusCombo.Text = "";
+            DepartmentCombo.Text = "";
+            PopulateUserControls();
         }
 
         private void GoBack_btn_Click(object sender, EventArgs e)
@@ -170,18 +171,23 @@ namespace WorkTasks.Forms
 
         private void NameBox_TextChanged(object sender, EventArgs e)
         {
-
+            string nameText = NameBox.Text;
+            nameFilter = nameText;
+            PopulateUserControls();
         }
 
         private void StatusCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedStatus = StatusCombo.Text;
-            PopulateUserControls("", selectedStatus, "");
+            statusFilter = selectedStatus;
+            PopulateUserControls();
         }
 
         private void DepartmentCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string selectedDepartment = DepartmentCombo.Text;
+            departmentFilter = selectedDepartment;
+            PopulateUserControls();
         }
     }
 }

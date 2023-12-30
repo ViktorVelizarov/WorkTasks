@@ -32,7 +32,7 @@ namespace WorkTasks.UserControls
         private void DeleteTask_btn_Click(object sender, EventArgs e)
         {
             DeleteTaskFromCSV(name);
-            taskPage.PopulateUserControls("", "", "");
+            taskPage.PopulateUserControls();
         }
 
         private void DeleteTaskFromCSV(string titleToDelete)

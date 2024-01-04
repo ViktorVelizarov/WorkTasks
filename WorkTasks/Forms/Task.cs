@@ -173,51 +173,6 @@ namespace WorkTasks.Forms
                 }
 
                 // Add the new task to the list
-                Employee employee1 = new Employee
-                {
-                    Id = 1,
-                    Ssn = "1",
-                    FirstName = "Test1",
-                    LastName = "Test1",
-                    Gender = "male",
-                    StreetName = "bruh",
-                    StreetNumber = 1,
-                    Zipcode = "bruh",
-                    City = "bruh",
-                    Email = "bruh",
-                    Department = "bruh"
-                };
-                Employee employee2 = new Employee
-                {
-                    Id = 2,
-                    Ssn = "2",
-                    FirstName = "Test2",
-                    LastName = "Test2",
-                    Gender = "male",
-                    StreetName = "bruh",
-                    StreetNumber = 2,
-                    Zipcode = "bruh",
-                    City = "bruh",
-                    Email = "bruh",
-                    Department = "bruh"
-                };
-                Employee employee3 = new Employee
-                {
-                    Id = 2,
-                    Ssn = "2",
-                    FirstName = "Test2",
-                    LastName = "Test2",
-                    Gender = "male",
-                    StreetName = "bruh",
-                    StreetNumber = 2,
-                    Zipcode = "bruh",
-                    City = "bruh",
-                    Email = "bruh",
-                    Department = "bruh"
-                };
-                newTask.AddEmployeeToList(employee1);
-                newTask.AddEmployeeToList(employee2);
-                newTask.AddEmployeeToList(employee3);
                 existingTasks.Add(newTask);
 
                 // Write the updated list back to the XML file

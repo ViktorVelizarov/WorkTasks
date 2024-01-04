@@ -88,9 +88,7 @@ namespace WorkTasks.Forms
 
         private void Back_btn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var temp = new TaskPage();
-            temp.Show();
+            this.Close();
         }
     }
 }

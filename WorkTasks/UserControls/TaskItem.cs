@@ -106,7 +106,14 @@ namespace WorkTasks.UserControls
             }
         }
 
-
+        public void RefreshListbox()
+        {
+            EmployeesListbox.Items.Clear();
+            foreach (Employee emp in employees)
+            {
+                EmployeesListbox.Items.Add(emp.FirstName + emp.LastName + " | " + emp.Department);
+            }
+        }
         private void UpdateTask_btn_Click(object sender, EventArgs e)
         {
             var temp = new TaskUpdate(this);

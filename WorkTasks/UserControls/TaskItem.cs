@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using WorkTasks.Classes;
 using WorkTasks.Forms;
 
@@ -43,40 +45,67 @@ namespace WorkTasks.UserControls
         public TaskItem() { }
         private void DeleteTask_btn_Click(object sender, EventArgs e)
         {
-            DeleteTaskFromCSV(name);
+            DeleteTaskFromXML(name);
             taskPage.PopulateUserControls();
         }
 
-        private void DeleteTaskFromCSV(string titleToDelete)
+        private void DeleteTaskFromXML(string titleToDelete)
         {
-            string csvFilePath = "tasks.csv";
+            string xmlFilePath = "tasks.xml";
 
             try
             {
-                // Read all lines from the CSV file
-                List<string> lines = File.ReadAllLines(csvFilePath).ToList();
-
-                // Find the line that contains the task to delete based on its title
-                string lineToDelete = lines.FirstOrDefault(line => line.StartsWith(titleToDelete));
-
-                if (lineToDelete != null)
+                if (File.Exists(xmlFilePath))
                 {
-                    // Remove the line containing the task to delete
-                    lines.Remove(lineToDelete);
+                    List<TaskClass> tasks;
 
-                    // Write the updated lines back to the CSV file
-                    File.WriteAllLines(csvFilePath, lines);
+                    // Read existing tasks from the XML file
+                    using (FileStream fs = new FileStream(xmlFilePath, FileMode.Open))
+                    {
+                        // Create a DataContractSerializer for TaskClass
+                        DataContractSerializer serializer = new DataContractSerializer(typeof(List<TaskClass>));
+
+                        // Deserialize the XML content into a List<TaskClass>
+                        tasks = (List<TaskClass>)serializer.ReadObject(fs);
+                    }
+
+                    // Find the task to delete based on its title
+                    TaskClass taskToDelete = tasks.FirstOrDefault(task => task.Title.Equals(titleToDelete, StringComparison.OrdinalIgnoreCase));
+
+                    if (taskToDelete != null)
+                    {
+                        // Remove the task from the list
+                        tasks.Remove(taskToDelete);
+
+                        // Write the updated list back to the XML file
+                        using (FileStream fs = new FileStream(xmlFilePath, FileMode.Create))
+                        {
+                            // Create a DataContractSerializer for List<TaskClass>
+                            DataContractSerializer listSerializer = new DataContractSerializer(typeof(List<TaskClass>));
+
+                            // Serialize the list of tasks to the XML file
+                            using (XmlWriter writer = XmlWriter.Create(fs))
+                            {
+                                listSerializer.WriteObject(writer, tasks);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Task not found in XML file.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Task not found in CSV file.");
+                    MessageBox.Show("XML file not found.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error deleting from CSV: " + ex.Message);
+                MessageBox.Show("Error deleting from XML: " + ex.Message);
             }
         }
+
 
         private void UpdateTask_btn_Click(object sender, EventArgs e)
         {

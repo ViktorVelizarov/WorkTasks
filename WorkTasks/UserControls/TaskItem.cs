@@ -140,7 +140,15 @@ namespace WorkTasks.UserControls
         public List<Employee> Employees
         {
             get { return employees; }
-            set { employees = value;}
+            set
+            {
+                employees = value;
+                EmployeesListbox.Items.Clear();
+                foreach (Employee emp in employees)
+                {
+                    EmployeesListbox.Items.Add(emp.FirstName + emp.LastName + " | " + emp.Department);
+                }
+            }
         }
         public string Description
         {

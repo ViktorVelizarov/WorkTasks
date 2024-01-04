@@ -36,7 +36,6 @@
             UpdateTask_btn = new Button();
             DeleteTask_btn = new Button();
             EmployeesListbox = new ListBox();
-            label1 = new Label();
             SuspendLayout();
             // 
             // nameLabel
@@ -113,26 +112,16 @@
             // 
             EmployeesListbox.FormattingEnabled = true;
             EmployeesListbox.ItemHeight = 20;
-            EmployeesListbox.Location = new Point(484, 95);
+            EmployeesListbox.Location = new Point(361, 75);
             EmployeesListbox.Name = "EmployeesListbox";
-            EmployeesListbox.Size = new Size(213, 44);
+            EmployeesListbox.Size = new Size(338, 84);
             EmployeesListbox.TabIndex = 8;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(484, 58);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 9;
-            label1.Text = "label1";
             // 
             // TaskItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(label1);
             Controls.Add(EmployeesListbox);
             Controls.Add(DeleteTask_btn);
             Controls.Add(UpdateTask_btn);
@@ -157,6 +146,5 @@
         private Button UpdateTask_btn;
         private Button DeleteTask_btn;
         private ListBox EmployeesListbox;
-        private Label label1;
     }
 }

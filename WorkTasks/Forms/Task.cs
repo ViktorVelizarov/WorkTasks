@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using WorkTasks.Classes;
 using WorkTasks.UserControls;
 
@@ -23,51 +25,61 @@ namespace WorkTasks.Forms
             InitializeComponent();
         }
 
+
+
         public void PopulateUserControls()
         {
             TasksFlowLayout.Controls.Clear();
-            string csvFilePath = "tasks.csv";
+            string xmlFilePath = "tasks.xml";
 
             try
             {
-                // Read all lines from the CSV file
-                string[] lines = File.ReadAllLines(csvFilePath);
-
-                foreach (string line in lines)
+                // Create a FileStream to read the XML file
+                using (FileStream fs = new FileStream(xmlFilePath, FileMode.Open))
                 {
-                    // Split the CSV line into individual values
-                    string[] values = line.Split(',');
+                    // Create a DataContractSerializer for TaskClass
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(List<TaskClass>));
 
-                    // Apply filters
-                    bool nameMatches = string.IsNullOrEmpty(nameFilter) || values[0].IndexOf(nameFilter, StringComparison.OrdinalIgnoreCase) >= 0;
-                    bool statusMatches = string.IsNullOrEmpty(statusFilter) || values[1].Trim().Equals(statusFilter, StringComparison.OrdinalIgnoreCase);
-                    // Check if department filter matches any department in the pipe-separated string
-                    bool departmentMatches = string.IsNullOrEmpty(departmentFilter) ||
-                        values[5].Split('|').Any(department => department.Trim().Equals(departmentFilter, StringComparison.OrdinalIgnoreCase));
+                    // Deserialize the XML content into a List<TaskClass>
+                    List<TaskClass> tasks = (List<TaskClass>)serializer.ReadObject(fs);
 
-                    // Check if all filters match
-                    if (nameMatches && statusMatches && departmentMatches)
+                    foreach (TaskClass task in tasks)
                     {
-                        // Create a TaskItem and populate it with data from the CSV
-                        TaskItem taskItem = new TaskItem(this);
-                        taskItem.Name = values[0];
-                        taskItem.Status = values[1];
-                        taskItem.Description = values[2];
-                        taskItem.Deadline = values[3];
-                        taskItem.ByUser = values[4];
-                        taskItem.Departments = values[5];
+                        // Apply filters
+                        bool nameMatches = string.IsNullOrEmpty(nameFilter) || task.Title.IndexOf(nameFilter, StringComparison.OrdinalIgnoreCase) >= 0;
+                        bool statusMatches = string.IsNullOrEmpty(statusFilter) || task.Status.ToString().Equals(statusFilter, StringComparison.OrdinalIgnoreCase);
+                        // Check if department filter matches any department in the list
+                        bool departmentMatches = string.IsNullOrEmpty(departmentFilter) ||
+                            task.Departments.Any(department => department.ToString().Trim().Equals(departmentFilter, StringComparison.OrdinalIgnoreCase));
 
-                        // Add the TaskItem to the flow layout
-                        TasksFlowLayout.Controls.Add(taskItem);
+                        // Check if all filters match
+                        if (nameMatches && statusMatches && departmentMatches)
+                        {
+                            // Create a TaskItem and populate it with data from the XML
+                            TaskItem taskItem = new TaskItem(this);
+                            taskItem.Name = task.Title;
+                            taskItem.Status = task.Status.ToString();
+                            taskItem.Description = task.Description;
+                            taskItem.Deadline = task.Deadline;
+                            // Convert the List<Employee> to a string for display (customize as needed)
+                            //taskItem.Employees = string.Join(", ", task.Employees.Select(employee => employee.FirstName + " " + employee.LastName));
+                            taskItem.Departments = string.Join(" | ", task.Departments.Select(department => department.ToString()));
+
+                            // Add the TaskItem to the flow layout
+                            TasksFlowLayout.Controls.Add(taskItem);
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error reading from CSV: " + ex.Message);
+                MessageBox.Show("Error reading from XML: " + ex.Message);
             }
-
         }
+
+
+
+
         private void CreateTask_btn_Click(object sender, EventArgs e)
         {
             try
@@ -124,7 +136,7 @@ namespace WorkTasks.Forms
 
                 myCompany.AddTask(createdTask);
                 MessageBox.Show("Task created succesfully!");
-                SaveTaskToCSV(createdTask);
+                SaveTaskToXML(createdTask);
             }
             catch
             {
@@ -133,23 +145,57 @@ namespace WorkTasks.Forms
 
         }
 
-        private void SaveTaskToCSV(TaskClass task)
+
+        private void SaveTaskToXML(TaskClass newTask)
         {
-            string csvFilePath = "tasks.csv"; // Specify the path for your CSV file
+            string xmlFilePath = "tasks.xml"; // Specify the path for your XML file
 
             try
             {
-                using (StreamWriter sw = new StreamWriter(csvFilePath, true))
+                List<TaskClass> existingTasks;
+
+                // Check if the file exists
+                if (File.Exists(xmlFilePath))
                 {
-                    // Write task details to the CSV file
-                    sw.WriteLine($"{task.Title},{task.Status},{task.Description},{task.Deadline}, {task.EmployeeName} ,{string.Join(",", task.Departments)}");
+                    // Read existing tasks from the XML file
+                    using (FileStream fs = new FileStream(xmlFilePath, FileMode.Open))
+                    {
+                        // Create a DataContractSerializer for TaskClass
+                        DataContractSerializer serializer = new DataContractSerializer(typeof(List<TaskClass>));
+
+                        // Deserialize the XML content into a List<TaskClass>
+                        existingTasks = (List<TaskClass>)serializer.ReadObject(fs);
+                    }
+                }
+                else
+                {
+                    // If the file doesn't exist, create a new list of tasks
+                    existingTasks = new List<TaskClass>();
+                }
+
+                // Add the new task to the list
+               
+                existingTasks.Add(newTask);
+
+                // Write the updated list back to the XML file
+                using (FileStream fs = new FileStream(xmlFilePath, FileMode.Create))
+                {
+                    // Create a DataContractSerializer for List<TaskClass>
+                    DataContractSerializer listSerializer = new DataContractSerializer(typeof(List<TaskClass>));
+
+                    // Serialize the list of tasks to the XML file
+                    using (XmlWriter writer = XmlWriter.Create(fs))
+                    {
+                        listSerializer.WriteObject(writer, existingTasks);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saving to CSV: " + ex.Message);
+                MessageBox.Show("Error saving to XML: " + ex.Message);
             }
         }
+
 
         private void LoadAllTasks_btn_Click(object sender, EventArgs e)
         {

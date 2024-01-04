@@ -14,9 +14,15 @@ namespace WorkTasks.UserControls
 {
     public partial class EmployeeItem : UserControl
     {
-        public EmployeeItem()
+        private TaskItem taskItem;
+        public EmployeeItem( bool showButton, TaskItem taskItem)
         {
             InitializeComponent();
+            if (!showButton)
+            {
+                Add_btn.Visible = false;
+            }
+            this.taskItem = taskItem;
         }
 
         //fields
@@ -31,6 +37,12 @@ namespace WorkTasks.UserControls
         private string city;
         private string email;
         private string department;
+
+        private void Add_btn_Click(object sender, EventArgs e)
+        {
+          //  taskItem.AddEmployee(this.Name);
+        }
+
 
         //getters and setters
 

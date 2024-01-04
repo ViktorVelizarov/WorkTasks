@@ -32,10 +32,11 @@
             statusLabel = new Label();
             departmentsLabel = new Label();
             deadlineLabel = new Label();
-            byUserLabel = new Label();
             dLabel = new Label();
             UpdateTask_btn = new Button();
             DeleteTask_btn = new Button();
+            EmployeesListbox = new ListBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // nameLabel
@@ -73,21 +74,11 @@
             deadlineLabel.AutoSize = true;
             deadlineLabel.BackColor = Color.Transparent;
             deadlineLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            deadlineLabel.Location = new Point(452, 30);
+            deadlineLabel.Location = new Point(484, 30);
             deadlineLabel.Name = "deadlineLabel";
             deadlineLabel.Size = new Size(92, 28);
             deadlineLabel.TabIndex = 3;
             deadlineLabel.Text = "Deadline";
-            // 
-            // byUserLabel
-            // 
-            byUserLabel.AutoSize = true;
-            byUserLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            byUserLabel.Location = new Point(610, 30);
-            byUserLabel.Name = "byUserLabel";
-            byUserLabel.Size = new Size(34, 28);
-            byUserLabel.TabIndex = 4;
-            byUserLabel.Text = "By";
             // 
             // dLabel
             // 
@@ -118,15 +109,34 @@
             DeleteTask_btn.UseVisualStyleBackColor = true;
             DeleteTask_btn.Click += DeleteTask_btn_Click;
             // 
+            // EmployeesListbox
+            // 
+            EmployeesListbox.FormattingEnabled = true;
+            EmployeesListbox.ItemHeight = 20;
+            EmployeesListbox.Location = new Point(484, 95);
+            EmployeesListbox.Name = "EmployeesListbox";
+            EmployeesListbox.Size = new Size(213, 44);
+            EmployeesListbox.TabIndex = 8;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(484, 58);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 20);
+            label1.TabIndex = 9;
+            label1.Text = "label1";
+            // 
             // TaskItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(label1);
+            Controls.Add(EmployeesListbox);
             Controls.Add(DeleteTask_btn);
             Controls.Add(UpdateTask_btn);
             Controls.Add(dLabel);
-            Controls.Add(byUserLabel);
             Controls.Add(deadlineLabel);
             Controls.Add(departmentsLabel);
             Controls.Add(statusLabel);
@@ -143,9 +153,10 @@
         private Label statusLabel;
         private Label departmentsLabel;
         private Label deadlineLabel;
-        private Label byUserLabel;
         private Label dLabel;
         private Button UpdateTask_btn;
         private Button DeleteTask_btn;
+        private ListBox EmployeesListbox;
+        private Label label1;
     }
 }

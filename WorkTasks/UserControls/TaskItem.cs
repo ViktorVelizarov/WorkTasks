@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WorkTasks.Classes;
 using WorkTasks.Forms;
 
 namespace WorkTasks.UserControls
@@ -18,7 +19,16 @@ namespace WorkTasks.UserControls
         public TaskItem(TaskPage taskPage)
         {
             InitializeComponent();
+            EmployeesListbox.Items.Clear();
             this.taskPage = taskPage;
+            if (employees == null)
+            {
+                EmployeesListbox.Items.Add("No employees...");
+            }
+            else
+            {
+                EmployeesListbox.Items.Add(" employees...");
+            }
         }
 
         //fields
@@ -26,9 +36,11 @@ namespace WorkTasks.UserControls
         private string departments;
         private string deadline;
         private string status;
-        private string byUser;
+        private List<Employee> employees;
         private string description;
 
+        //empty constructor
+        public TaskItem() { }
         private void DeleteTask_btn_Click(object sender, EventArgs e)
         {
             DeleteTaskFromCSV(name);
@@ -71,7 +83,10 @@ namespace WorkTasks.UserControls
             var temp = new TaskUpdate(this);
             temp.Show();
         }
-
+        public void AddEmployee(Employee emp)
+        {
+            employees.Add(emp);
+        }
         //getters and setters
         public string Name
         {
@@ -93,10 +108,10 @@ namespace WorkTasks.UserControls
             get { return status; }
             set { status = value; statusLabel.Text = value; }
         }
-        public string ByUser
+        public List<Employee> Employees
         {
-            get { return byUser; }
-            set { byUser = value; byUserLabel.Text = value; }
+            get { return employees; }
+            set { employees = value;}
         }
         public string Description
         {

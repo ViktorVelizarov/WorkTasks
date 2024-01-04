@@ -35,6 +35,7 @@
             genderLabel = new Label();
             emialLabel = new Label();
             departmentLabel = new Label();
+            Add_btn = new Button();
             SuspendLayout();
             // 
             // firstNameLabel
@@ -107,11 +108,24 @@
             departmentLabel.TabIndex = 7;
             departmentLabel.Text = "Department";
             // 
+            // Add_btn
+            // 
+            Add_btn.BackColor = Color.Chartreuse;
+            Add_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            Add_btn.Location = new Point(791, 103);
+            Add_btn.Name = "Add_btn";
+            Add_btn.Size = new Size(137, 50);
+            Add_btn.TabIndex = 8;
+            Add_btn.Text = "Add";
+            Add_btn.UseVisualStyleBackColor = false;
+            Add_btn.Click += Add_btn_Click;
+            // 
             // EmployeeItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(Add_btn);
             Controls.Add(departmentLabel);
             Controls.Add(emialLabel);
             Controls.Add(genderLabel);
@@ -134,5 +148,6 @@
         private Label genderLabel;
         private Label emialLabel;
         private Label departmentLabel;
+        private Button Add_btn;
     }
 }

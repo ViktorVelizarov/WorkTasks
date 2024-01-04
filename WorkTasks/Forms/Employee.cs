@@ -61,7 +61,8 @@ namespace WorkTasks.Forms
 
                         // Add the Employee object to the list
                         employees.Add(employee);
-                        EmployeeItem employeeItem = new EmployeeItem();
+                        TaskItem taskItem = new TaskItem();
+                        EmployeeItem employeeItem = new EmployeeItem(false, taskItem);
                         employeeItem.Id = int.Parse(fields[0]);
                         employeeItem.Ssn = fields[1];
                         employeeItem.FirstName = fields[2];
@@ -77,8 +78,6 @@ namespace WorkTasks.Forms
                     }
                 }
             }
-
-
         }
 
         private void GoBack_btn_Click(object sender, EventArgs e)

@@ -30,8 +30,6 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            label9 = new Label();
-            button1 = new Button();
             TasksFlowLayout = new FlowLayoutPanel();
             LoadAllTasks_btn = new Button();
             DepartmentCombo = new ComboBox();
@@ -60,8 +58,6 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            tabPage3 = new TabPage();
-            tabPage4 = new TabPage();
             GoBack_btn = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -72,8 +68,6 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage4);
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -82,8 +76,6 @@
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(label9);
-            tabPage1.Controls.Add(button1);
             tabPage1.Controls.Add(TasksFlowLayout);
             tabPage1.Controls.Add(LoadAllTasks_btn);
             tabPage1.Controls.Add(DepartmentCombo);
@@ -99,24 +91,6 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Search Tasks";
             tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(941, 29);
-            label9.Name = "label9";
-            label9.Size = new Size(50, 20);
-            label9.TabIndex = 12;
-            label9.Text = "label9";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(942, 166);
-            button1.Name = "button1";
-            button1.Size = new Size(192, 49);
-            button1.TabIndex = 11;
-            button1.Text = "Create Task";
-            button1.UseVisualStyleBackColor = true;
             // 
             // TasksFlowLayout
             // 
@@ -405,26 +379,6 @@
             label1.TabIndex = 0;
             label1.Text = "Name:";
             // 
-            // tabPage3
-            // 
-            tabPage3.Location = new Point(4, 29);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1140, 579);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Update Task";
-            tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            tabPage4.Location = new Point(4, 29);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1140, 579);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Delete Task";
-            tabPage4.UseVisualStyleBackColor = true;
-            // 
             // GoBack_btn
             // 
             GoBack_btn.Location = new Point(16, 692);
@@ -457,8 +411,6 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private TabPage tabPage3;
-        private TabPage tabPage4;
         private Label label2;
         private Label label1;
         private RadioButton statusRadio4;
@@ -485,10 +437,8 @@
         private Label label7;
         private ComboBox StatusCombo;
         private FlowLayoutPanel TasksFlowLayout;
-        private Button button1;
         private Label label8;
         private MonthCalendar deadlineCalendar;
         private Button GoBack_btn;
-        private Label label9;
     }
 }

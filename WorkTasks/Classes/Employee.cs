@@ -94,6 +94,7 @@ public class Employee
         set { department = value; }
     }
 
+    //had to override this cause for some reason the removeFromTask function wasnt working properly
     public override bool Equals(object obj)
     {
         if (obj == null || GetType() != obj.GetType())

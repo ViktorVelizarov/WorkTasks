@@ -36,7 +36,6 @@
             emialLabel = new Label();
             departmentLabel = new Label();
             Add_btn = new Button();
-            label1 = new Label();
             SuspendLayout();
             // 
             // firstNameLabel
@@ -121,21 +120,11 @@
             Add_btn.UseVisualStyleBackColor = false;
             Add_btn.Click += Add_btn_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(400, 107);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 9;
-            label1.Text = "label1";
-            // 
             // EmployeeItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(label1);
             Controls.Add(Add_btn);
             Controls.Add(departmentLabel);
             Controls.Add(emialLabel);
@@ -161,6 +150,5 @@
         private Label emialLabel;
         private Label departmentLabel;
         private Button Add_btn;
-        private Label label1;
     }
 }

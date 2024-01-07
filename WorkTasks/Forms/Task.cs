@@ -209,7 +209,7 @@ namespace WorkTasks.Forms
         private void GoBack_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var temp = new HomePage();
+            var temp = new AdminMainPage();
             temp.Show();
         }
 

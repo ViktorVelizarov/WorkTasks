@@ -70,9 +70,9 @@ namespace WorkTasks.UserControls
                 Add_btn.Text = "Remove";
             }
             else
-            {   
-                
-                if(taskItem.RemoveEmployee(newEmployee) && taskToUpdate.RemoveEmployeeFromList(newEmployee))
+            {
+
+                if (taskItem.RemoveEmployee(newEmployee) && taskToUpdate.RemoveEmployeeFromList(newEmployee))
                 {
                     //update the xml file wit the updated task object
                     UpdateTaskInXML(taskToUpdate);
@@ -81,7 +81,7 @@ namespace WorkTasks.UserControls
                     Add_btn.BackColor = Color.LightGreen;
                     Add_btn.Text = "Add";
                 }
-                
+
             }
         }
 
@@ -138,7 +138,6 @@ namespace WorkTasks.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("Task not found in XML file.");
                     return null;
                 }
             }

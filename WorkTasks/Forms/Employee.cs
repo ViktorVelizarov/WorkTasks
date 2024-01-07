@@ -15,17 +15,22 @@ namespace WorkTasks.Forms
 {
     public partial class EmployeePage : Form
     {
-        public EmployeePage()
+        public List<Employee> employees = new List<Employee>();
+        private Company company;
+        private Employee loggedEmployee;
+        public EmployeePage(Company currentCompany, Employee loggedEmployee)
         {
             InitializeComponent();
+            this.company = currentCompany;
+            this.loggedEmployee = loggedEmployee;
         }
-        public void PopulateUserControls()
+
+        public void GetEmployeesFromFile()
         {
-            EmployeesFlowLayout.Controls.Clear();
-            string filePath = "MOCK_EMPLOYEE_DATA.csv"; 
+            string filePath = "MOCK_EMPLOYEE_DATA.csv";
 
             List<string> targetDepartments = new List<string> { "Human Resources", "Marketing", "Sales", "Support", "Research and Development" };
-            List<Employee> employees = new List<Employee>();
+            
 
             // Use TextFieldParser to read the CSV file
             using (TextFieldParser parser = new TextFieldParser(filePath))
@@ -56,39 +61,49 @@ namespace WorkTasks.Forms
                             Zipcode = fields[7],
                             City = fields[8],
                             Email = fields[9],
-                            Department = fields[10]
+                            Department = fields[10],
+                            IsAdmin = false
                         };
 
                         // Add the Employee object to the list
                         employees.Add(employee);
-                        TaskItem taskItem = new TaskItem();
-                        EmployeeItem employeeItem = new EmployeeItem(false, taskItem);
-                        employeeItem.Id = int.Parse(fields[0]);
-                        employeeItem.Ssn = fields[1];
-                        employeeItem.FirstName = fields[2];
-                        employeeItem.LastName = fields[3];
-                        employeeItem.Gender = fields[4];
-                        employeeItem.StreetName = fields[5];
-                        employeeItem.StreetNumber = int.Parse(fields[6]);
-                        employeeItem.Zipcode = fields[7];
-                        employeeItem.City = fields[8];
-                        employeeItem.Email = fields[9];
-                        employeeItem.Department = fields[10];
-                        EmployeesFlowLayout.Controls.Add(employeeItem);
                     }
                 }
             }
+        }
+        public void PopulateUserControls()
+        {
+            EmployeesFlowLayout.Controls.Clear();
+           foreach( Employee emp in employees)
+            {
+                TaskItem taskItem = new TaskItem();
+                EmployeeItem employeeItem = new EmployeeItem(false, taskItem);
+                employeeItem.Id = emp.Id;
+                employeeItem.Ssn = emp.Ssn;
+                employeeItem.FirstName = emp.FirstName;
+                employeeItem.LastName = emp.LastName;
+                employeeItem.Gender = emp.Gender;
+                employeeItem.StreetName = emp.StreetName;
+                employeeItem.StreetNumber = emp.StreetNumber;
+                employeeItem.Zipcode = emp.Zipcode;
+                employeeItem.City = emp.City;
+                employeeItem.Email = emp.Email;
+                employeeItem.Department = emp.Department;
+                EmployeesFlowLayout.Controls.Add(employeeItem);
+            }
+                       
         }
 
         private void GoBack_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var temp = new AdminMainPage();
+            var temp = new AdminMainPage(company, loggedEmployee);
             temp.Show();
         }
 
         private void LoadEmployees_btn_Click(object sender, EventArgs e)
         {
+            GetEmployeesFromFile();
             PopulateUserControls();
         }
     }

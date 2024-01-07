@@ -19,10 +19,13 @@ namespace WorkTasks.Forms
         private string nameFilter;
         private string statusFilter;
         private string departmentFilter;
-        Company myCompany = new Company("company1");
-        public TaskPage()
+        private Company company;
+        private Employee loggedEmployee;
+        public TaskPage(Company currentCompany, Employee loggedEmployee)
         {
             InitializeComponent();
+            company = currentCompany;
+            this.loggedEmployee = loggedEmployee;
         }
 
 
@@ -133,7 +136,7 @@ namespace WorkTasks.Forms
                     createdTask.AddDepartmentToList(DepartmentsEnum.ResearchAndDevelopment);
                 }
 
-                myCompany.AddTask(createdTask);
+                company.AddTask(createdTask);
                 MessageBox.Show("Task created succesfully!");
                 SaveTaskToXML(createdTask);
             }
@@ -209,7 +212,7 @@ namespace WorkTasks.Forms
         private void GoBack_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var temp = new AdminMainPage();
+            var temp = new AdminMainPage(company, loggedEmployee);
             temp.Show();
         }
 

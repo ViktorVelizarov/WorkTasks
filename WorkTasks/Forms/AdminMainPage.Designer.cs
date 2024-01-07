@@ -32,6 +32,7 @@
             AdminPage = new Label();
             EmployeesPage_btn = new Button();
             TasksPage_btn = new Button();
+            loggedAs = new Label();
             SuspendLayout();
             // 
             // Logout_btn
@@ -74,11 +75,21 @@
             TasksPage_btn.UseVisualStyleBackColor = true;
             TasksPage_btn.Click += TasksPage_btn_Click_1;
             // 
+            // loggedAs
+            // 
+            loggedAs.AutoSize = true;
+            loggedAs.Location = new Point(516, 147);
+            loggedAs.Name = "loggedAs";
+            loggedAs.Size = new Size(42, 20);
+            loggedAs.TabIndex = 5;
+            loggedAs.Text = "label";
+            // 
             // AdminMainPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1080, 620);
+            Controls.Add(loggedAs);
             Controls.Add(TasksPage_btn);
             Controls.Add(EmployeesPage_btn);
             Controls.Add(AdminPage);
@@ -95,5 +106,6 @@
         private Label AdminPage;
         private Button EmployeesPage_btn;
         private Button TasksPage_btn;
+        private Label loggedAs;
     }
 }

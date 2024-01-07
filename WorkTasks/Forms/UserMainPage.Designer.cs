@@ -30,6 +30,7 @@
         {
             Logout_btn = new Button();
             EmployeePage = new Label();
+            LoggedAs = new Label();
             SuspendLayout();
             // 
             // Logout_btn
@@ -52,11 +53,21 @@
             EmployeePage.TabIndex = 1;
             EmployeePage.Text = "Employee Page";
             // 
+            // LoggedAs
+            // 
+            LoggedAs.AutoSize = true;
+            LoggedAs.Location = new Point(526, 155);
+            LoggedAs.Name = "LoggedAs";
+            LoggedAs.Size = new Size(50, 20);
+            LoggedAs.TabIndex = 2;
+            LoggedAs.Text = "label1";
+            // 
             // UserMainPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1081, 622);
+            Controls.Add(LoggedAs);
             Controls.Add(EmployeePage);
             Controls.Add(Logout_btn);
             Name = "UserMainPage";
@@ -69,5 +80,6 @@
 
         private Button Logout_btn;
         private Label EmployeePage;
+        private Label LoggedAs;
     }
 }

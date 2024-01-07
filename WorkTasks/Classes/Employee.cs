@@ -15,6 +15,7 @@ public class Employee
     private string city;
     private string email;
     private string department;
+    private bool isAdmin;
 
     //getters and setters
     [DataMember]
@@ -92,6 +93,13 @@ public class Employee
     {
         get { return department; }
         set { department = value; }
+    }
+
+    [DataMember]
+    public bool IsAdmin
+    {
+        get { return isAdmin; }
+        set { isAdmin = value; }
     }
 
     //had to override this cause for some reason the removeFromTask function wasnt working properly

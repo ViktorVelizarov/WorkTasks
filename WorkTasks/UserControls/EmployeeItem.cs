@@ -10,23 +10,13 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml;
 using System.Runtime.Serialization;
+using WorkTasks.Forms;
 
 namespace WorkTasks.UserControls
 {
     public partial class EmployeeItem : UserControl
     {
         private TaskItem taskItem;
-        public EmployeeItem( bool showButton, TaskItem taskItem)
-        {
-            InitializeComponent();
-            if (!showButton)
-            {
-                Add_btn.Visible = false;
-            }
-            this.taskItem = taskItem;
-        }
-
-        //fields
         private int id;
         private string ssn;
         private string firstName;
@@ -38,6 +28,16 @@ namespace WorkTasks.UserControls
         private string city;
         private string email;
         private string department;
+
+        public EmployeeItem(bool showButton, TaskItem taskItem)
+        {
+            InitializeComponent();
+            if (!showButton)
+            {
+                Add_btn.Visible = false;
+            }
+            this.taskItem = taskItem;
+        }
 
         private void Add_btn_Click(object sender, EventArgs e)
         {
@@ -57,10 +57,48 @@ namespace WorkTasks.UserControls
             };
             //get the TaskClass object we need to update( because we cant use the TaskItem object)
             TaskClass taskToUpdate = FindTaskByTitle(taskItem.Name);
-            taskToUpdate.AddEmployeeToList(newEmployee);
-            taskItem.AddEmployee(newEmployee);
-            UpdateTaskInXML(taskToUpdate);
-            taskItem.RefreshListbox();
+
+            if (Add_btn.Text == "Add")
+            {
+                taskToUpdate.AddEmployeeToList(newEmployee);
+                taskItem.AddEmployee(newEmployee);
+                //update the xml file wit the updated task object
+                UpdateTaskInXML(taskToUpdate);
+                //refresh the listbox so we see the change
+                taskItem.RefreshListbox();
+                Add_btn.BackColor = Color.Red;
+                Add_btn.Text = "Remove";
+            }
+            else
+            {   
+                
+                if(taskItem.RemoveEmployee(newEmployee) && taskToUpdate.RemoveEmployeeFromList(newEmployee))
+                {
+                    //update the xml file wit the updated task object
+                    UpdateTaskInXML(taskToUpdate);
+                    //refresh the listbox so we see the change
+                    taskItem.RefreshListbox();
+                    Add_btn.BackColor = Color.LightGreen;
+                    Add_btn.Text = "Add";
+                }
+                
+            }
+        }
+
+        private bool TaskContainsEmployee(TaskClass taskToUpdate)
+        {
+            if (taskToUpdate != null)
+            {
+                foreach (Employee emp in taskToUpdate.Employees)
+                {
+                    if (emp.FirstName == firstNameLabel.Text)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return false;
         }
 
         private TaskClass FindTaskByTitle(string titleToFind)
@@ -165,6 +203,23 @@ namespace WorkTasks.UserControls
             catch (Exception ex)
             {
                 MessageBox.Show("Error updating task in XML: " + ex.Message);
+            }
+        }
+
+        private void EmployeeItem_Load(object sender, EventArgs e)
+        {
+            //get the TaskClass object we need to update( because we cant use the TaskItem object)
+            TaskClass taskToUpdate = FindTaskByTitle(taskItem.Name);
+
+            if (!TaskContainsEmployee(taskToUpdate))
+            {
+                Add_btn.BackColor = Color.LightGreen;
+                Add_btn.Text = "Add";
+            }
+            else
+            {
+                Add_btn.BackColor = Color.Red;
+                Add_btn.Text = "Remove";
             }
         }
 

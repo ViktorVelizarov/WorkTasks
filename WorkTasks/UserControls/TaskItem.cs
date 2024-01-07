@@ -123,6 +123,11 @@ namespace WorkTasks.UserControls
         {
             employees.Add(emp);
         }
+        public bool RemoveEmployee(Employee emp)
+        {
+            return employees.Remove(emp);
+        }
+
         //getters and setters
         public string Name
         {

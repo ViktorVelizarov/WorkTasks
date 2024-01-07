@@ -93,4 +93,16 @@ public class Employee
         get { return department; }
         set { department = value; }
     }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+            return false;
+
+        Employee otherEmployee = (Employee)obj;
+
+        // Compare properties for equality
+        return Id == otherEmployee.Id && FirstName == otherEmployee.FirstName; // Add other properties as needed
+    }
+
 }

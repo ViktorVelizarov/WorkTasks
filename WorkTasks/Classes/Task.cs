@@ -71,6 +71,10 @@ public class TaskClass
     {
         this.employees.Add(emp);
     }
+    public bool RemoveEmployeeFromList(Employee emp)
+    {
+       return  this.employees.Remove(emp);
+    }
 
     public void AddDepartmentToList(DepartmentsEnum department)
     {

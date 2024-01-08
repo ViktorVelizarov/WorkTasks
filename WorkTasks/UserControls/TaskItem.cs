@@ -40,6 +40,7 @@ namespace WorkTasks.UserControls
             {
                 EmployeesListbox.Items.Add(" employees...");
             }
+
         }
         //empty constructor
         public TaskItem() { }
@@ -114,6 +115,14 @@ namespace WorkTasks.UserControls
             {
                 EmployeesListbox.Items.Add(emp.FirstName + emp.LastName + " | " + emp.Department);
             }
+            if (status == "Open" && employees.Count == 0)
+            {
+                DeleteTask_btn.Enabled = true;
+            }
+            else
+            {
+                DeleteTask_btn.Enabled = false;
+            }
         }
         private void UpdateTask_btn_Click(object sender, EventArgs e)
         {
@@ -127,6 +136,18 @@ namespace WorkTasks.UserControls
         public bool RemoveEmployee(Employee emp)
         {
             return employees.Remove(emp);
+        }
+
+        private void TaskItem_Load(object sender, EventArgs e)
+        {
+            if (status == "Open" && employees.Count == 0)
+            {
+                DeleteTask_btn.Enabled = true;
+            }
+            else
+            {
+                DeleteTask_btn.Enabled = false;
+            }
         }
 
         //getters and setters

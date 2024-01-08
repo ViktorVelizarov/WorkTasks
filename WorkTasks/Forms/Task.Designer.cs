@@ -28,16 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskPage));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             TasksFlowLayout = new FlowLayoutPanel();
-            LoadAllTasks_btn = new Button();
             DepartmentCombo = new ComboBox();
             label7 = new Label();
             StatusCombo = new ComboBox();
-            label6 = new Label();
             NameBox = new TextBox();
-            label5 = new Label();
             tabPage2 = new TabPage();
             label8 = new Label();
             deadlineCalendar = new MonthCalendar();
@@ -59,6 +57,8 @@
             label2 = new Label();
             label1 = new Label();
             GoBack_btn = new Button();
+            label6 = new Label();
+            label5 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -71,26 +71,25 @@
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1148, 612);
+            tabControl1.Size = new Size(955, 612);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            tabPage1.BackColor = Color.LightSteelBlue;
+            tabPage1.Controls.Add(label5);
             tabPage1.Controls.Add(TasksFlowLayout);
-            tabPage1.Controls.Add(LoadAllTasks_btn);
             tabPage1.Controls.Add(DepartmentCombo);
             tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(StatusCombo);
             tabPage1.Controls.Add(label6);
             tabPage1.Controls.Add(NameBox);
-            tabPage1.Controls.Add(label5);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1140, 579);
+            tabPage1.Size = new Size(947, 579);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Search Tasks";
-            tabPage1.UseVisualStyleBackColor = true;
             // 
             // TasksFlowLayout
             // 
@@ -101,20 +100,11 @@
             TasksFlowLayout.Size = new Size(893, 456);
             TasksFlowLayout.TabIndex = 10;
             // 
-            // LoadAllTasks_btn
-            // 
-            LoadAllTasks_btn.Location = new Point(942, 95);
-            LoadAllTasks_btn.Name = "LoadAllTasks_btn";
-            LoadAllTasks_btn.Size = new Size(192, 49);
-            LoadAllTasks_btn.TabIndex = 7;
-            LoadAllTasks_btn.Text = "Load All Tasks";
-            LoadAllTasks_btn.UseVisualStyleBackColor = true;
-            // 
             // DepartmentCombo
             // 
             DepartmentCombo.FormattingEnabled = true;
             DepartmentCombo.Items.AddRange(new object[] { "Human Resources ", "Marketing", "Sales", "Support", "Research and Development" });
-            DepartmentCombo.Location = new Point(647, 29);
+            DepartmentCombo.Location = new Point(770, 44);
             DepartmentCombo.Name = "DepartmentCombo";
             DepartmentCombo.Size = new Size(151, 28);
             DepartmentCombo.TabIndex = 6;
@@ -123,10 +113,10 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(530, 30);
+            label7.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(618, 38);
             label7.Name = "label7";
-            label7.Size = new Size(111, 25);
+            label7.Size = new Size(146, 31);
             label7.TabIndex = 5;
             label7.Text = "Department:";
             // 
@@ -134,42 +124,23 @@
             // 
             StatusCombo.FormattingEnabled = true;
             StatusCombo.Items.AddRange(new object[] { "Open", "InProgress", "Completed", "Blocked", "Cancelled" });
-            StatusCombo.Location = new Point(328, 31);
+            StatusCombo.Location = new Point(412, 44);
             StatusCombo.Name = "StatusCombo";
             StatusCombo.Size = new Size(151, 28);
             StatusCombo.TabIndex = 4;
             StatusCombo.SelectedIndexChanged += StatusCombo_SelectedIndexChanged;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(258, 32);
-            label6.Name = "label6";
-            label6.Size = new Size(64, 25);
-            label6.TabIndex = 3;
-            label6.Text = "Status:";
-            // 
             // NameBox
             // 
-            NameBox.Location = new Point(97, 30);
+            NameBox.Location = new Point(116, 42);
             NameBox.Name = "NameBox";
             NameBox.Size = new Size(125, 27);
             NameBox.TabIndex = 2;
             NameBox.TextChanged += NameBox_TextChanged;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(28, 30);
-            label5.Name = "label5";
-            label5.Size = new Size(63, 25);
-            label5.TabIndex = 1;
-            label5.Text = "Name:";
-            // 
             // tabPage2
             // 
+            tabPage2.BackColor = Color.LightSteelBlue;
             tabPage2.Controls.Add(label8);
             tabPage2.Controls.Add(deadlineCalendar);
             tabPage2.Controls.Add(CreateTask_btn);
@@ -192,35 +163,36 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1140, 579);
+            tabPage2.Size = new Size(947, 579);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Create Task";
-            tabPage2.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             label8.Location = new Point(21, 372);
             label8.Name = "label8";
-            label8.Size = new Size(110, 31);
+            label8.Size = new Size(112, 31);
             label8.TabIndex = 18;
             label8.Text = "Deadline:";
             // 
             // deadlineCalendar
             // 
-            deadlineCalendar.Location = new Point(209, 372);
+            deadlineCalendar.Location = new Point(209, 363);
             deadlineCalendar.Name = "deadlineCalendar";
             deadlineCalendar.TabIndex = 17;
             // 
             // CreateTask_btn
             // 
-            CreateTask_btn.Location = new Point(943, 483);
+            CreateTask_btn.BackColor = Color.Aqua;
+            CreateTask_btn.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            CreateTask_btn.Location = new Point(759, 509);
             CreateTask_btn.Name = "CreateTask_btn";
             CreateTask_btn.Size = new Size(165, 42);
             CreateTask_btn.TabIndex = 16;
             CreateTask_btn.Text = "Create";
-            CreateTask_btn.UseVisualStyleBackColor = true;
+            CreateTask_btn.UseVisualStyleBackColor = false;
             CreateTask_btn.Click += CreateTask_btn_Click;
             // 
             // descTextbox
@@ -235,13 +207,13 @@
             // 
             nameTextbox.Location = new Point(209, 35);
             nameTextbox.Name = "nameTextbox";
-            nameTextbox.Size = new Size(125, 27);
+            nameTextbox.Size = new Size(153, 27);
             nameTextbox.TabIndex = 14;
             // 
             // departCheck5
             // 
             departCheck5.AutoSize = true;
-            departCheck5.Location = new Point(752, 98);
+            departCheck5.Location = new Point(728, 98);
             departCheck5.Name = "departCheck5";
             departCheck5.Size = new Size(213, 24);
             departCheck5.TabIndex = 13;
@@ -251,7 +223,7 @@
             // departCheck4
             // 
             departCheck4.AutoSize = true;
-            departCheck4.Location = new Point(639, 98);
+            departCheck4.Location = new Point(619, 98);
             departCheck4.Name = "departCheck4";
             departCheck4.Size = new Size(84, 24);
             departCheck4.TabIndex = 12;
@@ -341,58 +313,82 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             label4.Location = new Point(21, 222);
             label4.Name = "label4";
-            label4.Size = new Size(136, 31);
+            label4.Size = new Size(140, 31);
             label4.TabIndex = 3;
             label4.Text = "Description:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(21, 157);
             label3.Name = "label3";
-            label3.Size = new Size(81, 31);
+            label3.Size = new Size(83, 31);
             label3.TabIndex = 2;
             label3.Text = "Status:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(21, 90);
             label2.Name = "label2";
-            label2.Size = new Size(166, 31);
+            label2.Size = new Size(172, 31);
             label2.TabIndex = 1;
             label2.Text = "Department(s):";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(21, 35);
+            label1.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(22, 35);
             label1.Name = "label1";
-            label1.Size = new Size(80, 31);
+            label1.Size = new Size(82, 31);
             label1.TabIndex = 0;
             label1.Text = "Name:";
             // 
             // GoBack_btn
             // 
-            GoBack_btn.Location = new Point(16, 692);
+            GoBack_btn.BackColor = Color.Aqua;
+            GoBack_btn.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            GoBack_btn.Location = new Point(775, 640);
             GoBack_btn.Name = "GoBack_btn";
             GoBack_btn.Size = new Size(192, 49);
             GoBack_btn.TabIndex = 12;
             GoBack_btn.Text = "Back";
-            GoBack_btn.UseVisualStyleBackColor = true;
+            GoBack_btn.UseVisualStyleBackColor = false;
             GoBack_btn.Click += GoBack_btn_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(323, 38);
+            label6.Name = "label6";
+            label6.Size = new Size(83, 31);
+            label6.TabIndex = 3;
+            label6.Text = "Status:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(28, 36);
+            label5.Name = "label5";
+            label5.Size = new Size(82, 31);
+            label5.TabIndex = 11;
+            label5.Text = "Name:";
             // 
             // TaskPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1170, 762);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(983, 716);
             Controls.Add(GoBack_btn);
             Controls.Add(tabControl1);
             Name = "TaskPage";
@@ -427,11 +423,8 @@
         private Button CreateTask_btn;
         private RichTextBox descTextbox;
         private TextBox nameTextbox;
-        private Label label6;
         private TextBox NameBox;
-        private Label label5;
         private ListBox TasksListbox;
-        private Button LoadAllTasks_btn;
         private ComboBox DepartmentCombo;
         private Label label7;
         private ComboBox StatusCombo;
@@ -439,5 +432,7 @@
         private Label label8;
         private MonthCalendar deadlineCalendar;
         private Button GoBack_btn;
+        private Label label5;
+        private Label label6;
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using WorkTasks.UserControls;
 using Microsoft.VisualBasic.FileIO;
 using WorkTasks.Classes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WorkTasks.Forms
 {
@@ -17,6 +18,7 @@ namespace WorkTasks.Forms
     {
         private TaskItem taskItem;
         private List<string> neededDepartments;
+        private HelperFuncitons hf = new HelperFuncitons();
         public TaskUpdate(TaskItem taskItem)
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace WorkTasks.Forms
             AddEmployeeFlow.Controls.Clear();
             string filePath = "MOCK_EMPLOYEE_DATA.csv";
 
-         
+
             List<Employee> employees = new List<Employee>();
 
             // Use TextFieldParser to read the CSV file
@@ -68,7 +70,7 @@ namespace WorkTasks.Forms
 
                         // Add the Employee object to the list
                         employees.Add(employee);
-                        EmployeeItem employeeItem = new EmployeeItem(true,taskItem);
+                        EmployeeItem employeeItem = new EmployeeItem(true, taskItem);
                         employeeItem.Id = int.Parse(fields[0]);
                         employeeItem.Ssn = fields[1];
                         employeeItem.FirstName = fields[2];
@@ -89,6 +91,15 @@ namespace WorkTasks.Forms
         private void Back_btn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void StatusCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TaskClass taskToUpdate = hf.FindTaskByTitle(taskItem.Name);
+            taskToUpdate.Status = (StatusEnum)Enum.Parse(typeof(StatusEnum), StatusCombo.Text);
+            taskItem.Status = StatusCombo.Text;
+            hf.UpdateTaskInXML(taskToUpdate);
+            taskItem.RefreshListbox();
         }
     }
 }

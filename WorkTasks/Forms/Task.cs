@@ -21,6 +21,7 @@ namespace WorkTasks.Forms
         private string departmentFilter;
         private Company company;
         private Employee loggedEmployee;
+        private HelperFuncitons hf = new HelperFuncitons();
         public TaskPage(Company currentCompany, Employee loggedEmployee)
         {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace WorkTasks.Forms
         }
 
 
-
+        //creating a taskItem user control for each task in the file
         public void PopulateUserControls()
         {
             TasksFlowLayout.Controls.Clear();
@@ -139,7 +140,7 @@ namespace WorkTasks.Forms
 
                 company.AddTask(createdTask);
                 MessageBox.Show("Task created succesfully!");
-                SaveTaskToXML(createdTask);
+                hf.SaveTaskToXML(createdTask);
                 LoadAllTasks();
             }
             catch
@@ -148,57 +149,6 @@ namespace WorkTasks.Forms
             }
 
         }
-
-
-        private void SaveTaskToXML(TaskClass newTask)
-        {
-            string xmlFilePath = "tasks.xml"; // Specify the path for your XML file
-
-            try
-            {
-                List<TaskClass> existingTasks;
-
-                // Check if the file exists
-                if (File.Exists(xmlFilePath))
-                {
-                    // Read existing tasks from the XML file
-                    using (FileStream fs = new FileStream(xmlFilePath, FileMode.Open))
-                    {
-                        // Create a DataContractSerializer for TaskClass
-                        DataContractSerializer serializer = new DataContractSerializer(typeof(List<TaskClass>));
-
-                        // Deserialize the XML content into a List<TaskClass>
-                        existingTasks = (List<TaskClass>)serializer.ReadObject(fs);
-                    }
-                }
-                else
-                {
-                    // If the file doesn't exist, create a new list of tasks
-                    existingTasks = new List<TaskClass>();
-                }
-
-                // Add the new task to the list
-                existingTasks.Add(newTask);
-
-                // Write the updated list back to the XML file
-                using (FileStream fs = new FileStream(xmlFilePath, FileMode.Create))
-                {
-                    // Create a DataContractSerializer for List<TaskClass>
-                    DataContractSerializer listSerializer = new DataContractSerializer(typeof(List<TaskClass>));
-
-                    // Serialize the list of tasks to the XML file
-                    using (XmlWriter writer = XmlWriter.Create(fs))
-                    {
-                        listSerializer.WriteObject(writer, existingTasks);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error saving to XML: " + ex.Message);
-            }
-        }
-
 
         private void LoadAllTasks()
         {

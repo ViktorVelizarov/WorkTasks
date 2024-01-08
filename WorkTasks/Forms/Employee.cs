@@ -23,60 +23,14 @@ namespace WorkTasks.Forms
             InitializeComponent();
             this.company = currentCompany;
             this.loggedEmployee = loggedEmployee;
-            GetEmployeesFromFile();
             PopulateUserControls();
         }
-
-        public void GetEmployeesFromFile()
-        {
-            string filePath = "MOCK_EMPLOYEE_DATA.csv";
-
-            List<string> targetDepartments = new List<string> { "Human Resources", "Marketing", "Sales", "Support", "Research and Development" };
-
-
-            // Use TextFieldParser to read the CSV file
-            using (TextFieldParser parser = new TextFieldParser(filePath))
-            {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(","); // Set the delimiter to ,
-
-                // Skip the header row
-                parser.ReadLine();
-
-                while (!parser.EndOfData)
-                {
-                    string[] fields = parser.ReadFields();
-
-                    // Check if the department is in the target departments
-                    if (targetDepartments.Contains(fields[10]))
-                    {
-                        // Create an Employee object and populate its properties
-                        Employee employee = new Employee
-                        {
-                            Id = int.Parse(fields[0]),
-                            Ssn = fields[1],
-                            FirstName = fields[2],
-                            LastName = fields[3],
-                            Gender = fields[4],
-                            StreetName = fields[5],
-                            StreetNumber = int.Parse(fields[6]),
-                            Zipcode = fields[7],
-                            City = fields[8],
-                            Email = fields[9],
-                            Department = fields[10],
-                            IsAdmin = false
-                        };
-
-                        // Add the Employee object to the list
-                        employees.Add(employee);
-                    }
-                }
-            }
-        }
+        
+        //creating the EmployeeItem user controls for each employee object in the company
         public void PopulateUserControls()
         {
             EmployeesFlowLayout.Controls.Clear();
-            foreach (Employee emp in employees)
+            foreach (Employee emp in company.employees)
             {
                 TaskItem taskItem = new TaskItem();
                 EmployeeItem employeeItem = new EmployeeItem(false, taskItem);

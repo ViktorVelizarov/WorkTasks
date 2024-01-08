@@ -40,9 +40,10 @@
             // 
             Logout_btn.BackColor = Color.Aqua;
             Logout_btn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            Logout_btn.Location = new Point(809, 12);
+            Logout_btn.Location = new Point(708, 9);
+            Logout_btn.Margin = new Padding(3, 2, 3, 2);
             Logout_btn.Name = "Logout_btn";
-            Logout_btn.Size = new Size(151, 50);
+            Logout_btn.Size = new Size(132, 38);
             Logout_btn.TabIndex = 1;
             Logout_btn.Text = "Logout";
             Logout_btn.UseVisualStyleBackColor = false;
@@ -53,9 +54,9 @@
             AdminPage.AutoSize = true;
             AdminPage.BackColor = Color.Transparent;
             AdminPage.Font = new Font("Verdana", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point);
-            AdminPage.Location = new Point(341, 85);
+            AdminPage.Location = new Point(298, 64);
             AdminPage.Name = "AdminPage";
-            AdminPage.Size = new Size(317, 53);
+            AdminPage.Size = new Size(251, 42);
             AdminPage.TabIndex = 2;
             AdminPage.Text = "Admin Page";
             // 
@@ -63,9 +64,10 @@
             // 
             EmployeesPage_btn.BackColor = Color.Aqua;
             EmployeesPage_btn.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            EmployeesPage_btn.Location = new Point(377, 219);
+            EmployeesPage_btn.Location = new Point(330, 164);
+            EmployeesPage_btn.Margin = new Padding(3, 2, 3, 2);
             EmployeesPage_btn.Name = "EmployeesPage_btn";
-            EmployeesPage_btn.Size = new Size(222, 68);
+            EmployeesPage_btn.Size = new Size(194, 51);
             EmployeesPage_btn.TabIndex = 3;
             EmployeesPage_btn.Text = "All Employees";
             EmployeesPage_btn.UseVisualStyleBackColor = false;
@@ -75,9 +77,10 @@
             // 
             TasksPage_btn.BackColor = Color.Aqua;
             TasksPage_btn.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            TasksPage_btn.Location = new Point(377, 356);
+            TasksPage_btn.Location = new Point(330, 267);
+            TasksPage_btn.Margin = new Padding(3, 2, 3, 2);
             TasksPage_btn.Name = "TasksPage_btn";
-            TasksPage_btn.Size = new Size(222, 68);
+            TasksPage_btn.Size = new Size(194, 51);
             TasksPage_btn.TabIndex = 4;
             TasksPage_btn.Text = "All Tasks";
             TasksPage_btn.UseVisualStyleBackColor = false;
@@ -88,24 +91,25 @@
             loggedAs.AutoSize = true;
             loggedAs.BackColor = Color.Transparent;
             loggedAs.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            loggedAs.Location = new Point(412, 148);
+            loggedAs.Location = new Point(708, 49);
             loggedAs.Name = "loggedAs";
-            loggedAs.Size = new Size(49, 25);
+            loggedAs.Size = new Size(42, 20);
             loggedAs.TabIndex = 5;
             loggedAs.Text = "label";
             // 
             // AdminMainPage
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(972, 575);
+            ClientSize = new Size(850, 431);
             Controls.Add(loggedAs);
             Controls.Add(TasksPage_btn);
             Controls.Add(EmployeesPage_btn);
             Controls.Add(AdminPage);
             Controls.Add(Logout_btn);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AdminMainPage";
             Text = "AdminMainPage";
             ResumeLayout(false);

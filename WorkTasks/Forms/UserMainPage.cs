@@ -23,7 +23,7 @@ namespace WorkTasks.Forms
             this.company = currentCompany;
             this.loggedEmployee = loggedEmployee;
             LoggedAs.Text = "logged in as " + loggedEmployee.FirstName;
-
+            PopulateUserControls(loggedEmployee.FirstName);
         }
 
         public void PopulateUserControls(string employeeNameFilter)
@@ -53,7 +53,7 @@ namespace WorkTasks.Forms
                         if (containsEmployee)
                         {
                             // Create a TaskItem and populate it with data from the XML
-                            TaskItem taskItem = new TaskItem();
+                            TaskItem2 taskItem = new TaskItem2();
                             taskItem.Name = task.Title;
                             taskItem.Status = task.Status.ToString();
                             taskItem.Description = task.Description;
@@ -79,11 +79,6 @@ namespace WorkTasks.Forms
             this.Hide();
             var temp = new HomePage(company);
             temp.Show();
-        }
-
-        private void LoadTasks_btn_Click(object sender, EventArgs e)
-        {
-            PopulateUserControls(loggedEmployee.FirstName);
         }
     }
 }

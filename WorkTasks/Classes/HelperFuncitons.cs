@@ -131,12 +131,60 @@ namespace WorkTasks.Classes
             }
         }
 
+        public void SaveTaskToXML(TaskClass newTask)
+        {
+            string xmlFilePath = "tasks.xml"; // Specify the path for your XML file
+
+            try
+            {
+                List<TaskClass> existingTasks;
+
+                // Check if the file exists
+                if (File.Exists(xmlFilePath))
+                {
+                    // Read existing tasks from the XML file
+                    using (FileStream fs = new FileStream(xmlFilePath, FileMode.Open))
+                    {
+                        // Create a DataContractSerializer for TaskClass
+                        DataContractSerializer serializer = new DataContractSerializer(typeof(List<TaskClass>));
+
+                        // Deserialize the XML content into a List<TaskClass>
+                        existingTasks = (List<TaskClass>)serializer.ReadObject(fs);
+                    }
+                }
+                else
+                {
+                    // If the file doesn't exist, create a new list of tasks
+                    existingTasks = new List<TaskClass>();
+                }
+
+                // Add the new task to the list
+                existingTasks.Add(newTask);
+
+                // Write the updated list back to the XML file
+                using (FileStream fs = new FileStream(xmlFilePath, FileMode.Create))
+                {
+                    // Create a DataContractSerializer for List<TaskClass>
+                    DataContractSerializer listSerializer = new DataContractSerializer(typeof(List<TaskClass>));
+
+                    // Serialize the list of tasks to the XML file
+                    using (XmlWriter writer = XmlWriter.Create(fs))
+                    {
+                        listSerializer.WriteObject(writer, existingTasks);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving to XML: " + ex.Message);
+            }
+        }
+
         public void GetEmployeesFromFile()
         {
             string filePath = "MOCK_EMPLOYEE_DATA.csv";
 
             List<string> targetDepartments = new List<string> { "Human Resources", "Marketing", "Sales", "Support", "Research and Development" };
-
 
             // Use TextFieldParser to read the CSV file
             using (TextFieldParser parser = new TextFieldParser(filePath))

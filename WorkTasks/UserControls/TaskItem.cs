@@ -16,8 +16,17 @@ namespace WorkTasks.UserControls
 {
     public partial class TaskItem : UserControl
     {
+
+        //fields
+        private string name;
+        private string departments;
+        private string deadline;
+        private string status;
+        private List<Employee> employees;
+        private string description;
         private TaskPage taskPage;
 
+        //constructor
         public TaskItem(TaskPage taskPage)
         {
             InitializeComponent();
@@ -32,17 +41,9 @@ namespace WorkTasks.UserControls
                 EmployeesListbox.Items.Add(" employees...");
             }
         }
-
-        //fields
-        private string name;
-        private string departments;
-        private string deadline;
-        private string status;
-        private List<Employee> employees;
-        private string description;
-
         //empty constructor
         public TaskItem() { }
+
         private void DeleteTask_btn_Click(object sender, EventArgs e)
         {
             DeleteTaskFromXML(name);

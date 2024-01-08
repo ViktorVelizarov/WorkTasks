@@ -109,7 +109,6 @@
             LoadAllTasks_btn.TabIndex = 7;
             LoadAllTasks_btn.Text = "Load All Tasks";
             LoadAllTasks_btn.UseVisualStyleBackColor = true;
-            LoadAllTasks_btn.Click += LoadAllTasks_btn_Click;
             // 
             // DepartmentCombo
             // 

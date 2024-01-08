@@ -23,6 +23,8 @@ namespace WorkTasks.Forms
             InitializeComponent();
             this.company = currentCompany;
             this.loggedEmployee = loggedEmployee;
+            GetEmployeesFromFile();
+            PopulateUserControls();
         }
 
         public void GetEmployeesFromFile()
@@ -30,7 +32,7 @@ namespace WorkTasks.Forms
             string filePath = "MOCK_EMPLOYEE_DATA.csv";
 
             List<string> targetDepartments = new List<string> { "Human Resources", "Marketing", "Sales", "Support", "Research and Development" };
-            
+
 
             // Use TextFieldParser to read the CSV file
             using (TextFieldParser parser = new TextFieldParser(filePath))
@@ -74,7 +76,7 @@ namespace WorkTasks.Forms
         public void PopulateUserControls()
         {
             EmployeesFlowLayout.Controls.Clear();
-           foreach( Employee emp in employees)
+            foreach (Employee emp in employees)
             {
                 TaskItem taskItem = new TaskItem();
                 EmployeeItem employeeItem = new EmployeeItem(false, taskItem);
@@ -91,7 +93,7 @@ namespace WorkTasks.Forms
                 employeeItem.Department = emp.Department;
                 EmployeesFlowLayout.Controls.Add(employeeItem);
             }
-                       
+
         }
 
         private void GoBack_btn_Click(object sender, EventArgs e)
@@ -99,12 +101,6 @@ namespace WorkTasks.Forms
             this.Hide();
             var temp = new AdminMainPage(company, loggedEmployee);
             temp.Show();
-        }
-
-        private void LoadEmployees_btn_Click(object sender, EventArgs e)
-        {
-            GetEmployeesFromFile();
-            PopulateUserControls();
         }
     }
 }

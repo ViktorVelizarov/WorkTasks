@@ -39,7 +39,7 @@ namespace WorkTasks
             Employee loggedEmployee = company.FindEmployee(loginName, loginEmail);
             if (loggedEmployee != null)
             {
-                if(loggedEmployee.IsAdmin)
+                if (loggedEmployee.IsAdmin)
                 {
                     this.Hide();
                     var temp = new AdminMainPage(company, loggedEmployee);
@@ -51,7 +51,7 @@ namespace WorkTasks
                     var temp = new UserMainPage(company, loggedEmployee);
                     temp.Show();
                 }
-               
+
             }
             else
             {

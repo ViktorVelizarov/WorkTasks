@@ -26,6 +26,7 @@ namespace WorkTasks.Forms
             InitializeComponent();
             company = currentCompany;
             this.loggedEmployee = loggedEmployee;
+            LoadAllTasks();
         }
 
 
@@ -139,6 +140,7 @@ namespace WorkTasks.Forms
                 company.AddTask(createdTask);
                 MessageBox.Show("Task created succesfully!");
                 SaveTaskToXML(createdTask);
+                LoadAllTasks();
             }
             catch
             {
@@ -198,7 +200,7 @@ namespace WorkTasks.Forms
         }
 
 
-        private void LoadAllTasks_btn_Click(object sender, EventArgs e)
+        private void LoadAllTasks()
         {
             nameFilter = "";
             statusFilter = "";

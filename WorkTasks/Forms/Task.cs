@@ -135,7 +135,7 @@ namespace WorkTasks.Forms
                 }
                 if (departCheck5.Checked)
                 {
-                    createdTask.AddDepartmentToList(DepartmentsEnum.ResearchAndDevelopment);
+                    createdTask.AddDepartmentToList(DepartmentsEnum.ResearchandDevelopment);
                 }
 
                 company.AddTask(createdTask);

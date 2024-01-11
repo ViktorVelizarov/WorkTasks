@@ -9,7 +9,7 @@ namespace WorkTasks.Classes
     public enum DepartmentsEnum
     {
         HumanResources,
-        ResearchAndDevelopment,
+        ResearchandDevelopment,
         Support,
         Marketing,
         Sales

@@ -31,10 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskPage));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            label5 = new Label();
             TasksFlowLayout = new FlowLayoutPanel();
             DepartmentCombo = new ComboBox();
             label7 = new Label();
             StatusCombo = new ComboBox();
+            label6 = new Label();
             NameBox = new TextBox();
             tabPage2 = new TabPage();
             label8 = new Label();
@@ -57,8 +59,6 @@
             label2 = new Label();
             label1 = new Label();
             GoBack_btn = new Button();
-            label6 = new Label();
-            label5 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -91,6 +91,16 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Search Tasks";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(28, 36);
+            label5.Name = "label5";
+            label5.Size = new Size(82, 31);
+            label5.TabIndex = 11;
+            label5.Text = "Name:";
+            // 
             // TasksFlowLayout
             // 
             TasksFlowLayout.AutoScroll = true;
@@ -103,7 +113,7 @@
             // DepartmentCombo
             // 
             DepartmentCombo.FormattingEnabled = true;
-            DepartmentCombo.Items.AddRange(new object[] { "Human Resources ", "Marketing", "Sales", "Support", "Research and Development" });
+            DepartmentCombo.Items.AddRange(new object[] { "HumanResources ", "Marketing", "Sales", "Support", "ResearchAndDevelopment" });
             DepartmentCombo.Location = new Point(770, 44);
             DepartmentCombo.Name = "DepartmentCombo";
             DepartmentCombo.Size = new Size(151, 28);
@@ -129,6 +139,16 @@
             StatusCombo.Size = new Size(151, 28);
             StatusCombo.TabIndex = 4;
             StatusCombo.SelectedIndexChanged += StatusCombo_SelectedIndexChanged;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(323, 38);
+            label6.Name = "label6";
+            label6.Size = new Size(83, 31);
+            label6.TabIndex = 3;
+            label6.Text = "Status:";
             // 
             // NameBox
             // 
@@ -361,26 +381,6 @@
             GoBack_btn.Text = "Back";
             GoBack_btn.UseVisualStyleBackColor = false;
             GoBack_btn.Click += GoBack_btn_Click;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(323, 38);
-            label6.Name = "label6";
-            label6.Size = new Size(83, 31);
-            label6.TabIndex = 3;
-            label6.Text = "Status:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(28, 36);
-            label5.Name = "label5";
-            label5.Size = new Size(82, 31);
-            label5.TabIndex = 11;
-            label5.Text = "Name:";
             // 
             // TaskPage
             // 

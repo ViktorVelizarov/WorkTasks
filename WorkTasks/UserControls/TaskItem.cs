@@ -113,7 +113,7 @@ namespace WorkTasks.UserControls
             EmployeesListbox.Items.Clear();
             foreach (Employee emp in employees)
             {
-                EmployeesListbox.Items.Add(emp.FirstName + emp.LastName + " | " + emp.Department);
+                EmployeesListbox.Items.Add(emp.FirstName + " " + emp.LastName + " | " + emp.Department);
             }
             if (status == "Open" && employees.Count == 0)
             {
@@ -180,7 +180,7 @@ namespace WorkTasks.UserControls
                 EmployeesListbox.Items.Clear();
                 foreach (Employee emp in employees)
                 {
-                    EmployeesListbox.Items.Add(emp.FirstName + emp.LastName + " | " + emp.Department);
+                    EmployeesListbox.Items.Add(emp.FirstName + " " + emp.LastName + " | " + emp.Department);
                 }
             }
         }

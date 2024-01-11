@@ -50,7 +50,7 @@ namespace WorkTasks.Forms
                     string[] fields = parser.ReadFields();
 
                     // Check if the department is in the target departments
-                    if (neededDepartments.Contains(fields[10]))
+                    if (neededDepartments.Contains(fields[10].Replace(" ", "")))
                     {
                         // Create an Employee object and populate its properties
                         Employee employee = new Employee
@@ -66,7 +66,7 @@ namespace WorkTasks.Forms
                             City = fields[8],
                             Email = fields[9],
                             Department = fields[10]
-                        };
+                    };
 
                         // Add the Employee object to the list
                         employees.Add(employee);
